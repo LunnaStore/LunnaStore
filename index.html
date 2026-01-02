@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Minha Loja</title>
+  <title>Lunna Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -15,43 +16,9 @@
       padding: 15px;
       text-align: center;
     }
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .card button {
-      background: #00a859;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .card button:hover {
-      background: #008f4c;
-    }
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 10px;
-    }
-  .abas {
+    .abas {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       padding: 10px;
       justify-content: center;
@@ -67,95 +34,198 @@
     }
     .abas button:hover {
       background: #666;
-    }  </style>
+    }
+    .produtos {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      display: grid;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+    .card button {
+      background: #00a859;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
 </head>
-<body><header>
-  <h1>Minha Loja Online</h1>
-  <p>Produtos direto do TikTok</p>
-</header><nav class="abas">
+<body>
+
+<header>
+  <h1>Lunna Store</h1>
+  <p>Semi-Joias de qualidade</p>
+</header>
+
+<!-- ABAS DE GÊNERO -->
+<nav class="abas">
+  <button onclick="mostrarGenero('feminino')">Feminino</button>
+  <button onclick="mostrarGenero('masculino')">Masculino</button>
+  <button onclick="mostrarGenero('infantil')">Infantil</button>
+</nav>
+
+<!-- ABAS DE CATEGORIA -->
+<nav class="abas">
   <button onclick="mostrar('brincos')">Brincos</button>
   <button onclick="mostrar('braceletes')">Braceletes</button>
   <button onclick="mostrar('colares')">Colares</button>
+  <button onclick="mostrar('pingentes')">Pingentes</button>
   <button onclick="mostrar('pulseiras')">Pulseiras</button>
   <button onclick="mostrar('piercings')">Piercings</button>
   <button onclick="mostrar('shocker')">Shocker</button>
   <button onclick="mostrar('aneis')">Anéis</button>
   <button onclick="mostrar('tornozeleiras')">Tornozeleiras</button>
   <button onclick="mostrar('conjuntos')">Conjuntos</button>
-</nav><section id="brincos" class="produtos">
+</nav>
+
+<!-- SEÇÕES DE PRODUTOS -->
+
+<section id="brincos" class="produtos feminino masculino infantil">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
-    <h3>Brinco Estrela</h3>
-    <p>R$ 29,90</p>
+    <img src="img/Brinco-Leque-Dourado.jpg">
+    <h3>Brinco Leque Dourado</h3>
+    <p>R$ 72,00</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="braceletes" class="produtos" style="display:none">
+</section>
+
+<section id="braceletes" class="produtos feminino">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
-    <h3>Bracelete Dourado</h3>
-    <p>R$ 49,90</p>
+    <img src="img/Bracelte-Pingente-Coração-Dourado.jpg">
+    <h3>Bracelete Rígido Com Pingente Coração Inox Dourado</h3>
+    <p>R$ 89,70</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="colares" class="produtos" style="display:none">
+</section>
+
+<section id="colares" class="produtos feminino">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
-    <h3>Colar Lua</h3>
-    <p>R$ 59,90</p>
+    <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
+    <h3>Colar Longo Corrente Cadeado Com Bolinhas</h3>
+    <p>R$ 89,70</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="pulseiras" class="produtos" style="display:none">
+</section>
+
+<section id="pingentes" class="produtos feminino masculino infantil">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
-    <h3>Pulseira Prata</h3>
-    <p>R$ 39,90</p>
+    <img src="img/Pingente-Cruz-Vazada.jpg">
+    <h3>Pingente Cruz Vazada Inox Dourado</h3>
+    <p>R$ 29,70</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="piercings" class="produtos" style="display:none">
+</section>
+
+<section id="pulseiras" class="produtos masculino">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
+    <img src="img/Pulseira-Masculina-Fígaro-Elos.jpg">
+    <h3>Pulseira Masculina Fígaro De Elos Inox</h3>
+    <p>R$ 50,70</p>
+    <button onclick="comprar()">Comprar</button>
+  </div>
+</section>
+
+<section id="piercings" class="produtos feminino masculino">
+  <div class="card">
+    <img src="img/piercing.jpg">
     <h3>Piercing Básico</h3>
     <p>R$ 19,90</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="shocker" class="produtos" style="display:none">
+</section>
+
+<section id="shocker" class="produtos feminino">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
+    <img src="img/shocker.jpg">
     <h3>Shocker Preto</h3>
     <p>R$ 34,90</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="aneis" class="produtos" style="display:none">
+</section>
+
+<section id="aneis" class="produtos feminino">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
-    <h3>Anel Minimalista</h3>
-    <p>R$ 39,90</p>
+    <img src="img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg">
+    <h3>Anel Quadrado Cravejado Dourado com Zircônias</h3>
+    <p>R$ 108,00</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="tornozeleiras" class="produtos" style="display:none">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
+    <img src="img/Anel-Texturizado-Coração-Cravejado-Pendurado.jpg">
+    <h3>Anel Texturizado Com Coração Cravejado Pendurado</h3>
+    <p>R$ 96,00</p>
+    <button onclick="comprar()">Comprar</button>
+  </div>
+  <div class="card">
+    <img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
+    <h3>Anel Solitário Clássico Cravejado</h3>
+    <p>R$ 28,00</p>
+    <button onclick="comprar()">Comprar</button>
+  </div>
+</section>
+
+<section id="tornozeleiras" class="produtos feminino">
+  <div class="card">
+    <img src="img/tornozeleira.jpg">
     <h3>Tornozeleira Delicada</h3>
     <p>R$ 29,90</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><section id="conjuntos" class="produtos" style="display:none">
+</section>
+
+<section id="conjuntos" class="produtos feminino infantil masculino">
   <div class="card">
-    <img src="https://via.placeholder.com/300">
+    <img src="img/conjunto.jpg">
     <h3>Conjunto Colar + Brinco</h3>
     <p>R$ 89,90</p>
     <button onclick="comprar()">Comprar</button>
   </div>
-</section><footer>
-  <p>© 2026 - Minha Loja</p>
-</footer><script>
+</section>
+
+<footer>
+  <p>© 2026 - Lunna Store</p>
+</footer>
+
+<script>
   function comprar() {
-    alert("Compra simulada! Link de pagamento você coloca depois.");
+    alert('Compra simulada!');
   }
 
   function mostrar(id) {
-    const secoes = document.querySelectorAll('.produtos');
-    secoes.forEach(sec => sec.style.display = 'none');
-    document.getElementById(id).style.display = 'grid';
+    document.querySelectorAll('.produtos').forEach(p => p.style.display = 'none');
+    const el = document.getElementById(id);
+    if(el) el.style.display = 'grid';
   }
-</script></body>
+
+  function mostrarGenero(genero) {
+    document.querySelectorAll('.produtos').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.' + genero).forEach(p => p.style.display = 'grid');
+  }
+</script>
+
+</body>
 </html>

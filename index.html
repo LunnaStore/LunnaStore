@@ -147,10 +147,20 @@ function render(){
   elementos.forEach(p=>p.style.display='grid');
 }
 
-// Inicia com feminino e brincos abertos
-document.querySelector('#generos button').click();
-document.querySelector('#categorias button').click();
-</script>
+// Definir gênero e categoria iniciais
+generoAtual = 'feminino';
+categoriaAtual = 'brincos';
 
+// Adicionar classe 'active' nos botões iniciais
+document.querySelectorAll('#generos button')[0].classList.add('active'); // feminino
+document.querySelectorAll('#categorias button')[0].classList.add('active'); // brincos
+
+// Renderizar produtos iniciais
+render();
+
+// Carregar carrinho (se tiver)
+loadCart();
+
+</script>
 </body>
 </html>

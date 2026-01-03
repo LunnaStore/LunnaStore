@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Lunna Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{margin:0;font-family:Arial;background:#f4f4f4}
@@ -16,18 +16,13 @@ header{background:#111;color:#fff;text-align:center;padding:15px}
 }
 .abas button.active{background:#fff;color:#111;font-weight:bold}
 
-.produtos{
-  display:none;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;
-  padding:20px
-}
-
+.produtos{display:none;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:20px}
 .card{
   background:#fff;border-radius:10px;padding:12px;
   box-shadow:0 2px 6px rgba(0,0,0,.2);text-align:center
 }
-.card img{width:100%;max-width:150px;border-radius:8px}
+.card img{max-width:150px;width:100%;border-radius:8px}
+.card button{margin-top:8px;padding:8px;border:none;border-radius:5px;background:#00a859;color:#fff;cursor:pointer}
 
 footer{background:#111;color:#fff;text-align:center;padding:10px}
 </style>
@@ -37,132 +32,162 @@ footer{background:#111;color:#fff;text-align:center;padding:10px}
 
 <header>
 <h1>Lunna Store</h1>
-<p>Semi Joias</p>
+<p>Semi-Joias de qualidade</p>
 </header>
 
-<!-- GÊNERO (VISUAL APENAS) -->
+<!-- GÊNERO -->
 <nav class="abas" id="generos">
-<button class="active">Feminino</button>
-<button>Masculino</button>
-<button>Infantil</button>
+<button onclick="setGenero('feminino',this)">Feminino</button>
+<button onclick="setGenero('masculino',this)">Masculino</button>
+<button onclick="setGenero('infantil',this)">Infantil</button>
 </nav>
 
 <!-- CATEGORIAS -->
 <nav class="abas" id="categorias">
-<button data-cat="brincos" class="active">Brincos</button>
-<button data-cat="braceletes">Braceletes</button>
-<button data-cat="colares">Colares</button>
-<button data-cat="pingentes">Pingentes</button>
-<button data-cat="pulseiras">Pulseiras</button>
-<button data-cat="aneis">Anéis</button>
-<button data-cat="piercings">Piercings</button>
-<button data-cat="shocker">Shocker</button>
-<button data-cat="tornozeleiras">Tornozeleiras</button>
-<button data-cat="conjuntos">Conjuntos</button>
+<button onclick="setCategoria('brincos',this)">Brincos</button>
+<button onclick="setCategoria('braceletes',this)">Braceletes</button>
+<button onclick="setCategoria('colares',this)">Colares</button>
+<button onclick="setCategoria('pingentes',this)">Pingentes</button>
+<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
+<button onclick="setCategoria('piercings',this)">Piercings</button>
+<button onclick="setCategoria('shocker',this)">Shocker</button>
+<button onclick="setCategoria('aneis',this)">Anéis</button>
+<button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
+<button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
 </nav>
 
 <!-- PRODUTOS -->
-
-<section class="produtos brincos">
+<section class="produtos feminino brincos">
 <div class="card">
 <img src="img/Brinco-Leque-Dourado.jpg">
 <h3>Brinco Leque Dourado</h3>
-<p>R$ 72,00</p>
+<p>R$72,00</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos braceletes">
+<section class="produtos feminino braceletes">
 <div class="card">
 <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
 <h3>Bracelete Coração</h3>
-<p>R$ 89,70</p>
+<p>R$89,70</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos colares">
+<section class="produtos feminino colares">
 <div class="card">
 <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
-<h3>Colar Longo</h3>
-<p>R$ 89,70</p>
+<h3>Colar Longo Corrente</h3>
+<p>R$89,70</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos pingentes">
+<section class="produtos feminino pingentes masculino infantil">
 <div class="card">
 <img src="img/Pingente-Cruz-Vazada.jpg">
 <h3>Pingente Cruz</h3>
-<p>R$ 29,70</p>
+<p>R$29,70</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos pulseiras">
+<section class="produtos masculino pulseiras">
 <div class="card">
 <img src="img/Pulseira-Masculina-Figaro-Elos.jpg">
 <h3>Pulseira Masculina</h3>
-<p>R$ 50,70</p>
+<p>R$50,70</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos aneis">
-<div class="card">
-<img src="img/Anel-Quadrado-Cravejado-Dourado.jpg">
-<h3>Anel Dourado</h3>
-<p>R$ 108,00</p>
-</div>
-</section>
-
-<section class="produtos piercings">
+<section class="produtos feminino piercings">
 <div class="card">
 <img src="img/piercing.jpg">
-<h3>Piercing</h3>
-<p>R$ 19,90</p>
+<h3>Piercing Básico</h3>
+<p>R$19,90</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos shocker">
+<section class="produtos feminino shocker">
 <div class="card">
 <img src="img/shocker.jpg">
-<h3>Shocker</h3>
-<p>R$ 34,90</p>
+<h3>Shocker Preto</h3>
+<p>R$34,90</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos tornozeleiras">
+<section class="produtos feminino aneis">
+<div class="card">
+<img src="img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg">
+<h3>Anel Dourado Cravejado</h3>
+<p>R$108,00</p>
+<button>Comprar</button>
+</div>
+<div class="card">
+<img src="img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg">
+<h3>Anel Coração Cravejado</h3>
+<p>R$96,00</p>
+<button>Comprar</button>
+</div>
+<div class="card">
+<img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
+<h3>Anel Solitário</h3>
+<p>R$84,00</p>
+<button>Comprar</button>
+</div>
+</section>
+
+<section class="produtos feminino tornozeleiras">
 <div class="card">
 <img src="img/tornozeleira.jpg">
-<h3>Tornozeleira</h3>
-<p>R$ 29,90</p>
+<h3>Tornozeleira Delicada</h3>
+<p>R$29,90</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<section class="produtos conjuntos">
+<section class="produtos feminino conjuntos infantil">
 <div class="card">
 <img src="img/conjunto.jpg">
-<h3>Conjunto</h3>
-<p>R$ 89,90</p>
+<h3>Conjunto Colar + Brinco</h3>
+<p>R$89,90</p>
+<button>Comprar</button>
 </div>
 </section>
 
-<footer>© 2026 Lunna Store</footer>
+<footer>© 2026 - Lunna Store</footer>
 
 <script>
-const botoes = document.querySelectorAll('#categorias button')
-const produtos = document.querySelectorAll('.produtos')
+let generoAtual='feminino'
+let categoriaAtual='brincos'
 
-function mostrar(cat){
-  produtos.forEach(p=>p.style.display='none')
-  document.querySelectorAll('.'+cat).forEach(p=>p.style.display='grid')
+function setGenero(g,btn){
+  generoAtual=g
+  document.querySelectorAll('#generos button').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  render()
 }
 
-botoes.forEach(b=>{
-  b.onclick=()=>{
-    botoes.forEach(x=>x.classList.remove('active'))
-    b.classList.add('active')
-    mostrar(b.dataset.cat)
-  }
-})
+function setCategoria(c,btn){
+  categoriaAtual=c
+  document.querySelectorAll('#categorias button').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  render()
+}
 
-mostrar('brincos')
+function render(){
+  document.querySelectorAll('.produtos').forEach(p=>p.style.display='none')
+  document.querySelectorAll(.${generoAtual}.${categoriaAtual}).forEach(p=>p.style.display='grid')
+}
+
+// Inicializa com Feminino + Brincos
+document.querySelectorAll('#generos button')[0].classList.add('active')
+document.querySelectorAll('#categorias button')[0].classList.add('active')
+render()
 </script>
 
 </body>

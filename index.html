@@ -22,7 +22,7 @@ header{
 .abas{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
   justify-content:center;
   background:#222;
   padding:10px;
@@ -60,7 +60,7 @@ header{
 
 .card img{
   width:100%;
-  max-width:160px;
+  max-width:150px;
   border-radius:8px;
 }
 
@@ -82,23 +82,18 @@ footer{
 
 <!-- GÊNEROS -->
 <nav class="abas" id="generos">
-<button onclick="setGenero('feminino',this)">Feminino</button>
-<button onclick="setGenero('masculino',this)">Masculino</button>
-<button onclick="setGenero('infantil',this)">Infantil</button>
+  <button onclick="setGenero('feminino', this)">Feminino</button>
+  <button onclick="setGenero('masculino', this)">Masculino</button>
+  <button onclick="setGenero('infantil', this)">Infantil</button>
 </nav>
 
 <!-- CATEGORIAS -->
 <nav class="abas" id="categorias">
-<button onclick="setCategoria('brincos',this)">Brincos</button>
-<button onclick="setCategoria('braceletes',this)">Braceletes</button>
-<button onclick="setCategoria('colares',this)">Colares</button>
-<button onclick="setCategoria('pingentes',this)">Pingentes</button>
-<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
-<button onclick="setCategoria('piercings',this)">Piercings</button>
-<button onclick="setCategoria('shocker',this)">Shocker</button>
-<button onclick="setCategoria('aneis',this)">Anéis</button>
-<button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
-<button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
+  <button onclick="setCategoria('brincos', this)">Brincos</button>
+  <button onclick="setCategoria('colares', this)">Colares</button>
+  <button onclick="setCategoria('pulseiras', this)">Pulseiras</button>
+  <button onclick="setCategoria('aneis', this)">Anéis</button>
+  <button onclick="setCategoria('pingentes', this)">Pingentes</button>
 </nav>
 
 <!-- PRODUTOS -->
@@ -111,27 +106,11 @@ footer{
   </div>
 </section>
 
-<section class="produtos feminino braceletes">
-  <div class="card">
-    <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
-    <h3>Bracelete Coração</h3>
-    <p>R$ 89,70</p>
-  </div>
-</section>
-
 <section class="produtos feminino colares">
   <div class="card">
     <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
     <h3>Colar Longo</h3>
     <p>R$ 89,70</p>
-  </div>
-</section>
-
-<section class="produtos feminino masculino infantil pingentes">
-  <div class="card">
-    <img src="img/Pingente-Cruz-Vazada.jpg">
-    <h3>Pingente Cruz</h3>
-    <p>R$ 29,70</p>
   </div>
 </section>
 
@@ -143,22 +122,6 @@ footer{
   </div>
 </section>
 
-<section class="produtos feminino piercings">
-  <div class="card">
-    <img src="img/piercing.jpg">
-    <h3>Piercing</h3>
-    <p>R$ 19,90</p>
-  </div>
-</section>
-
-<section class="produtos feminino shocker">
-  <div class="card">
-    <img src="img/shocker.jpg">
-    <h3>Shocker</h3>
-    <p>R$ 34,90</p>
-  </div>
-</section>
-
 <section class="produtos feminino aneis">
   <div class="card">
     <img src="img/Anel-Quadrado-Cravejado-Dourado.jpg">
@@ -167,53 +130,46 @@ footer{
   </div>
 </section>
 
-<section class="produtos feminino tornozeleiras">
+<section class="produtos feminino pingentes">
   <div class="card">
-    <img src="img/tornozeleira.jpg">
-    <h3>Tornozeleira</h3>
-    <p>R$ 29,90</p>
+    <img src="img/Pingente-Cruz-Vazada.jpg">
+    <h3>Pingente Cruz</h3>
+    <p>R$ 29,70</p>
   </div>
 </section>
 
-<section class="produtos feminino infantil conjuntos">
-  <div class="card">
-    <img src="img/conjunto.jpg">
-    <h3>Conjunto</h3>
-    <p>R$ 89,90</p>
-  </div>
-</section>
-
-<footer>© 2026 - Lunna Store</footer>
+<footer>
+© 2026 - Lunna Store
+</footer>
 
 <script>
 let generoAtual = 'feminino'
 let categoriaAtual = 'brincos'
 
-function setGenero(g,btn){
-  generoAtual = g
-  document.querySelectorAll('#generos button').forEach(b=>b.classList.remove('active'))
+function setGenero(genero, btn){
+  generoAtual = genero
+  document.querySelectorAll('#generos button').forEach(b => b.classList.remove('active'))
   btn.classList.add('active')
   render()
 }
 
-function setCategoria(c,btn){
-  categoriaAtual = c
-  document.querySelectorAll('#categorias button').forEach(b=>b.classList.remove('active'))
+function setCategoria(categoria, btn){
+  categoriaAtual = categoria
+  document.querySelectorAll('#categorias button').forEach(b => b.classList.remove('active'))
   btn.classList.add('active')
   render()
 }
 
 function render(){
-  document.querySelectorAll('.produtos').forEach(p=>p.style.display='none')
+  document.querySelectorAll('.produtos').forEach(p => p.style.display = 'none')
   document.querySelectorAll(.${generoAtual}.${categoriaAtual})
-    .forEach(p=>p.style.display='grid')
+    .forEach(p => p.style.display = 'grid')
 }
 
-/* ESTADO INICIAL */
-window.onload = () => {
-  setGenero('feminino', document.querySelector('#generos button'))
-  setCategoria('brincos', document.querySelector('#categorias button'))
-}
+/* ABRIR AUTOMATICAMENTE */
+document.querySelector('#generos button').classList.add('active')
+document.querySelector('#categorias button').classList.add('active')
+render()
 </script>
 
 </body>

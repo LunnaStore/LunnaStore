@@ -3,70 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <title>Lunna Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{margin:0;font-family:Arial;background:#f4f4f4}
-header{background:#111;color:#fff;padding:15px;text-align:center}
-
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f4f4;
+}
+header{
+  background:#111;
+  color:#fff;
+  padding:15px;
+  text-align:center;
+}
 .abas{
-  display:flex;flex-wrap:wrap;gap:8px;
-  justify-content:center;padding:10px;background:#222
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:10px;
+  justify-content:center;
+  background:#222;
 }
 .abas button{
-  background:#444;color:#fff;border:none;
-  padding:8px 14px;border-radius:6px;cursor:pointer
+  background:#444;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:5px;
+  cursor:pointer;
 }
 .abas button.ativo{
-  background:#fff;color:#000;font-weight:bold
+  background:white;
+  color:#111;
+  font-weight:bold;
 }
-
 .produtos{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;padding:20px
+  display:none;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  padding:20px;
 }
 .card{
-  background:#fff;border-radius:10px;
-  padding:12px;text-align:center;
-  box-shadow:0 2px 6px rgba(0,0,0,.2)
+  background:white;
+  border-radius:10px;
+  padding:15px;
+  box-shadow:0 2px 5px rgba(0,0,0,.2);
+  text-align:center;
 }
 .card img{
-  width:100%;max-width:150px;border-radius:8px
+  width:100%;
+  max-width:180px;
+  border-radius:10px;
 }
 .card button{
-  background:#00a859;color:#fff;
-  border:none;padding:8px;border-radius:5px;
-  cursor:pointer;margin-top:6px
+  background:#00a859;
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:5px;
+  cursor:pointer;
+  margin-top:10px;
 }
-
-/* CARRINHO */
-#carrinhoBtn{
-  position:fixed;bottom:20px;right:20px;
-  background:#000;color:#fff;
-  padding:12px;border-radius:50%;
-  cursor:pointer;font-size:18px
-}
-#carrinho{
-  position:fixed;top:0;right:-100%;
-  width:320px;height:100%;
-  background:#fff;box-shadow:-2px 0 8px rgba(0,0,0,.3);
-  padding:15px;transition:.3s;overflow:auto
-}
-#carrinho.aberto{right:0}
-.itemCarrinho{
-  display:flex;gap:8px;margin-bottom:10px;align-items:center
-}
-.itemCarrinho img{width:50px;border-radius:5px}
-.itemCarrinho button{
-  background:red;color:#fff;border:none;
-  padding:4px 6px;border-radius:4px;cursor:pointer
-}
-.whatsapp{
-  display:block;text-align:center;
-  background:#25d366;color:#fff;
-  padding:10px;border-radius:6px;
-  text-decoration:none;margin-top:15px
+footer{
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:10px;
 }
 </style>
 </head>
@@ -74,154 +77,174 @@ header{background:#111;color:#fff;padding:15px;text-align:center}
 <body>
 
 <header>
-<h1>Lunna Store</h1>
-<p>Semi-joias</p>
+  <h1>Lunna Store</h1>
+  <p>Semi-Joias de qualidade</p>
 </header>
 
 <!-- GÊNERO -->
 <nav class="abas" id="genero">
-<button onclick="setGenero('feminino',this)">Feminino</button>
-<button onclick="setGenero('masculino',this)">Masculino</button>
-<button onclick="setGenero('infantil',this)">Infantil</button>
+  <button onclick="setGenero('feminino')">Feminino</button>
+  <button onclick="setGenero('masculino')">Masculino</button>
+  <button onclick="setGenero('infantil')">Infantil</button>
 </nav>
 
-<!-- CATEGORIAS -->
+<!-- CATEGORIA -->
 <nav class="abas" id="categoria">
-<button onclick="setCategoria('brincos',this)">Brincos</button>
-<button onclick="setCategoria('colares',this)">Colares</button>
-<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
-<button onclick="setCategoria('aneis',this)">Anéis</button>
-<button onclick="setCategoria('pingentes',this)">Pingentes</button>
+  <button onclick="setCategoria('brincos')">Brincos</button>
+  <button onclick="setCategoria('braceletes')">Braceletes</button>
+  <button onclick="setCategoria('colares')">Colares</button>
+  <button onclick="setCategoria('pingentes')">Pingentes</button>
+  <button onclick="setCategoria('pulseiras')">Pulseiras</button>
+  <button onclick="setCategoria('piercings')">Piercings</button>
+  <button onclick="setCategoria('shocker')">Shocker</button>
+  <button onclick="setCategoria('aneis')">Anéis</button>
+  <button onclick="setCategoria('tornozeleiras')">Tornozeleiras</button>
+  <button onclick="setCategoria('conjuntos')">Conjuntos</button>
 </nav>
 
 <!-- PRODUTOS -->
-<div class="produtos" id="lista">
 
-<div class="card feminino brincos">
-<img src="img/Brinco-Leque-Dourado.jpg">
-<h4>Brinco Leque</h4>
-<p>R$72</p>
-<button onclick="addCarrinho('Brinco Leque',72,'img/Brinco-Leque-Dourado.jpg')">Adicionar</button>
-</div>
+<section class="produtos brincos feminino">
+  <div class="card">
+    <img src="img/Brinco-Leque-Dourado.jpg">
+    <h3>Brinco Leque Dourado</h3>
+    <p>R$ 72,00</p>
+    <button>Comprar</button>
+  </div>
+</section>
 
-<div class="card feminino colares">
-<img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
-<h4>Colar Longo</h4>
-<p>R$89,70</p>
-<button onclick="addCarrinho('Colar Longo',89.7,'img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg')">Adicionar</button>
-</div>
+<section class="produtos braceletes feminino">
+  <div class="card">
+    <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
+    <h3>Bracelete com Pingente Coração</h3>
+    <p>R$ 89,70</p>
+    <button>Comprar</button>
+  </div>
+</section>
 
-<div class="card masculino pulseiras">
-<img src="img/Pulseira-Masculina-Fígaro-Elos.jpg">
-<h4>Pulseira Masculina</h4>
-<p>R$50,70</p>
-<button onclick="addCarrinho('Pulseira Masculina',50.7,'img/Pulseira-Masculina-Fígaro-Elos.jpg')">Adicionar</button>
-</div>
+<section class="produtos colares feminino">
+  <div class="card">
+    <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
+    <h3>Colar Longo Corrente Cadeado</h3>
+    <p>R$ 89,70</p>
+    <button>Comprar</button>
+  </div>
+</section>
 
-<div class="card feminino aneis">
-<img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
-<h4>Anel Solitário</h4>
-<p>R$84</p>
-<button onclick="addCarrinho('Anel Solitário',84,'img/Anel-Solitário-Clássico-Cravejado.jpg')">Adicionar</button>
-</div>
+<section class="produtos pingentes feminino masculino infantil">
+  <div class="card">
+    <img src="img/Pingente-Cruz-Vazada.jpg">
+    <h3>Pingente Cruz Vazada</h3>
+    <p>R$ 29,70</p>
+    <button>Comprar</button>
+  </div>
+</section>
 
-<div class="card feminino masculino infantil pingentes">
-<img src="img/Pingente-Cruz-Vazada.jpg">
-<h4>Pingente Cruz</h4>
-<p>R$29,70</p>
-<button onclick="addCarrinho('Pingente Cruz',29.7,'img/Pingente-Cruz-Vazada.jpg')">Adicionar</button>
-</div>
+<section class="produtos pulseiras masculino">
+  <div class="card">
+    <img src="img/Pulseira-Masculina-Figaro-Elos.jpg">
+    <h3>Pulseira Masculina Fígaro</h3>
+    <p>R$ 50,70</p>
+    <button>Comprar</button>
+  </div>
+</section>
 
-</div>
+<section class="produtos piercings feminino">
+  <div class="card">
+    <img src="img/piercing.jpg">
+    <h3>Piercing Básico</h3>
+    <p>R$ 19,90</p>
+    <button>Comprar</button>
+  </div>
+</section>
 
-<!-- BOTÃO CARRINHO -->
-<div id="carrinhoBtn" onclick="toggleCarrinho()">🛒</div>
+<section class="produtos shocker feminino">
+  <div class="card">
+    <img src="img/shocker.jpg">
+    <h3>Shocker Preto</h3>
+    <p>R$ 34,90</p>
+    <button>Comprar</button>
+  </div>
+</section>
 
-<!-- CARRINHO -->
-<div id="carrinho">
-<h3>Carrinho</h3>
-<div id="itens"></div>
+<section class="produtos aneis feminino">
+  <div class="card">
+    <img src="img/Anel-Quadrado-Cravejado-Dourado-Zirconias.jpg">
+    <h3>Anel Quadrado Cravejado</h3>
+    <p>R$ 108,00</p>
+    <button>Comprar</button>
+  </div>
 
-<a class="whatsapp" id="zap" target="_blank">
-Atendimento via WhatsApp
-</a>
-</div>
+  <div class="card">
+    <img src="img/Anel-Texturizado-Coracao-Cravejado-Pendurado.jpg">
+    <h3>Anel Texturizado Coração</h3>
+    <p>R$ 96,00</p>
+    <button>Comprar</button>
+  </div>
+
+  <div class="card">
+    <img src="img/Anel-Solitario-Classico-Cravejado.jpg">
+    <h3>Anel Solitário Clássico</h3>
+    <p>R$ 84,00</p>
+    <button>Comprar</button>
+  </div>
+</section>
+
+<section class="produtos tornozeleiras feminino">
+  <div class="card">
+    <img src="img/tornozeleira.jpg">
+    <h3>Tornozeleira Delicada</h3>
+    <p>R$ 29,90</p>
+    <button>Comprar</button>
+  </div>
+</section>
+
+<section class="produtos conjuntos feminino infantil">
+  <div class="card">
+    <img src="img/conjunto.jpg">
+    <h3>Conjunto Colar + Brinco</h3>
+    <p>R$ 89,90</p>
+    <button>Comprar</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 - Lunna Store</p>
+</footer>
 
 <script>
-let genero="feminino"
-let categoria="brincos"
-let carrinho=JSON.parse(localStorage.getItem("carrinho"))||[]
+let generoAtual = "feminino"
+let categoriaAtual = "brincos"
 
-function setGenero(g,btn){
-genero=g
-ativo(btn,"genero")
-filtrar()
+function setGenero(g){
+  generoAtual = g
+  document.querySelectorAll('#genero button').forEach(b=>b.classList.remove('ativo'))
+  event.target.classList.add('ativo')
+  filtrar()
 }
 
-function setCategoria(c,btn){
-categoria=c
-ativo(btn,"categoria")
-filtrar()
-}
-
-function ativo(btn,id){
-document.querySelectorAll("#"+id+" button").forEach(b=>b.classList.remove("ativo"))
-btn.classList.add("ativo")
+function setCategoria(c){
+  categoriaAtual = c
+  document.querySelectorAll('#categoria button').forEach(b=>b.classList.remove('ativo'))
+  event.target.classList.add('ativo')
+  filtrar()
 }
 
 function filtrar(){
-document.querySelectorAll(".card").forEach(p=>{
-p.style.display = p.classList.contains(genero)&&p.classList.contains(categoria)
-? "block":"none"
-})
+  document.querySelectorAll('.produtos').forEach(p=>{
+    p.style.display = 
+      p.classList.contains(generoAtual) &&
+      p.classList.contains(categoriaAtual)
+      ? "grid" : "none"
+  })
 }
 
-function toggleCarrinho(){
-document.getElementById("carrinho").classList.toggle("aberto")
-renderCarrinho()
-}
-
-function addCarrinho(nome,preco,img){
-carrinho.push({nome,preco,img})
-localStorage.setItem("carrinho",JSON.stringify(carrinho))
-renderCarrinho()
-}
-
-function remover(i){
-carrinho.splice(i,1)
-localStorage.setItem("carrinho",JSON.stringify(carrinho))
-renderCarrinho()
-}
-
-function renderCarrinho(){
-const div=document.getElementById("itens")
-div.innerHTML=""
-let msg="Olá! Quero comprar:%0A"
-carrinho.forEach((p,i)=>{
-div.innerHTML+=`
-<div class="itemCarrinho">
-<img src="${p.img}">
-<span>${p.nome}</span>
-<button onclick="remover(${i})">X</button>
-</div>`
-msg+=- ${p.nome}%0A
-})
-document.getElementById("zap").href=
-"https://wa.me/55SEUNUMERO?text="+msg
-}
-
-window.onload = () => {
-  genero = "feminino"
-  categoria = "brincos"
-
-  const btnGenero = document.querySelector('#genero button[onclick*="feminino"]')
-  const btnCategoria = document.querySelector('#categoria button[onclick*="brincos"]')
-
-  btnGenero.classList.add("ativo")
-  btnCategoria.classList.add("ativo")
-
+window.onload = ()=>{
+  document.querySelector('#genero button').classList.add('ativo')
+  document.querySelector('#categoria button').classList.add('ativo')
   filtrar()
 }
 </script>
 
 </body>
+</html>

@@ -143,28 +143,29 @@ function setCategoria(c, btn){
 function render(){
   // esconder todos os produtos
   document.querySelectorAll('.produtos').forEach(p => p.style.display='none');
-  
+
   const elementos = document.querySelectorAll(.${generoAtual}.${categoriaAtual});
-  
+
   if(elementos.length === 0){
-    // criar uma mensagem "Não existe produto" dentro de um section temporário
-    const temp = document.createElement('section');
-    temp.classList.add('produtos', generoAtual, categoriaAtual);
-    temp.style.display = 'grid';
-    const msg = document.createElement('div');
-    msg.classList.add('no-product');
-    msg.textContent = 'Não existe esse produto';
-    temp.appendChild(msg);
-    document.body.appendChild(temp);
+    // mostrar apenas a mensagem de "Não existe esse produto"
+    let vazio = document.querySelector('.produtos.vazio');
+    if(!vazio){
+      vazio = document.createElement('section');
+      vazio.classList.add('produtos','vazio');
+      const msg = document.createElement('div');
+      msg.classList.add('no-product');
+      msg.textContent = 'Não existe esse produto';
+      vazio.appendChild(msg);
+      document.body.appendChild(vazio);
+    }
+    vazio.style.display = 'grid';
   } else {
     elementos.forEach(p => p.style.display='grid');
-    // remover mensagens antigas de "Não existe produto"
-    document.querySelectorAll('.no-product').forEach(n => {
-      if (!n.closest(.${generoAtual}.${categoriaAtual})) n.remove();
-    });
+    // esconder a seção de vazio se existir
+    const vazio = document.querySelector('.produtos.vazio');
+    if(vazio) vazio.style.display = 'none';
   }
 }
-
 // Inicializar botões ativos
 document.querySelectorAll('#generos button')[0].classList.add('active'); // feminino
 document.querySelectorAll('#categorias button')[0].classList.add('active'); // brincos

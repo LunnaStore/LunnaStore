@@ -14,32 +14,45 @@ body{
 
 header{
   background:#111;
-  color:#fff;
-  text-align:center;
+  color:white;
   padding:15px;
+  text-align:center;
+  position:relative;
+}
+
+#carrinho{
+  position:absolute;
+  top:15px;
+  right:20px;
+  background:white;
+  color:black;
+  padding:5px 12px;
+  border-radius:20px;
+  cursor:pointer;
 }
 
 .abas{
   display:flex;
   flex-wrap:wrap;
-  justify-content:center;
   gap:10px;
-  background:#222;
   padding:10px;
+  justify-content:center;
+  background:#222;
 }
 
 .abas button{
   background:#444;
-  color:#fff;
+  color:white;
   border:none;
-  padding:8px 14px;
-  border-radius:6px;
+  padding:8px 12px;
+  border-radius:5px;
   cursor:pointer;
 }
 
 .abas button.ativo{
-  background:#fff;
-  color:#000;
+  background:white;
+  color:black;
+  font-weight:bold;
 }
 
 .produtos{
@@ -50,22 +63,23 @@ header{
 }
 
 .card{
-  background:#fff;
+  background:white;
   border-radius:10px;
   padding:15px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.2);
   text-align:center;
-  box-shadow:0 2px 5px rgba(0,0,0,.2);
 }
 
 .card img{
-  max-width:160px;
   width:100%;
+  max-width:180px;
+  margin:auto;
   border-radius:10px;
 }
 
 .card button{
   background:#00a859;
-  color:#fff;
+  color:white;
   border:none;
   padding:10px;
   border-radius:5px;
@@ -75,7 +89,7 @@ header{
 
 footer{
   background:#111;
-  color:#fff;
+  color:white;
   text-align:center;
   padding:10px;
 }
@@ -87,173 +101,171 @@ footer{
 <header>
   <h1>Lunna Store</h1>
   <p>Semi-Joias de qualidade</p>
+  <div id="carrinho" onclick="abrirCarrinho()">🛒 <span id="contador">0</span></div>
 </header>
 
 <!-- GÊNERO -->
-<nav class="abas" id="genero">
-  <button onclick="filtrarGenero('feminino',this)">Feminino</button>
-  <button onclick="filtrarGenero('masculino',this)">Masculino</button>
-  <button onclick="filtrarGenero('infantil',this)">Infantil</button>
+<nav class="abas">
+  <button onclick="setGenero('feminino',this)">Feminino</button>
+  <button onclick="setGenero('masculino',this)">Masculino</button>
+  <button onclick="setGenero('infantil',this)">Infantil</button>
 </nav>
 
 <!-- CATEGORIAS -->
-<nav class="abas" id="categoria">
-  <button onclick="filtrarCategoria('brincos',this)">Brincos</button>
-  <button onclick="filtrarCategoria('braceletes',this)">Braceletes</button>
-  <button onclick="filtrarCategoria('colares',this)">Colares</button>
-  <button onclick="filtrarCategoria('pingentes',this)">Pingentes</button>
-  <button onclick="filtrarCategoria('pulseiras',this)">Pulseiras</button>
-  <button onclick="filtrarCategoria('piercings',this)">Piercings</button>
-  <button onclick="filtrarCategoria('shocker',this)">Shocker</button>
-  <button onclick="filtrarCategoria('aneis',this)">Anéis</button>
-  <button onclick="filtrarCategoria('tornozeleiras',this)">Tornozeleiras</button>
-  <button onclick="filtrarCategoria('conjuntos',this)">Conjuntos</button>
+<nav class="abas">
+  <button onclick="setCategoria('brincos',this)">Brincos</button>
+  <button onclick="setCategoria('braceletes',this)">Braceletes</button>
+  <button onclick="setCategoria('colares',this)">Colares</button>
+  <button onclick="setCategoria('pingentes',this)">Pingentes</button>
+  <button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
+  <button onclick="setCategoria('piercings',this)">Piercings</button>
+  <button onclick="setCategoria('shocker',this)">Shocker</button>
+  <button onclick="setCategoria('aneis',this)">Anéis</button>
+  <button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
+  <button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
 </nav>
 
 <!-- PRODUTOS -->
 
-<section class="produtos feminino brincos">
-<div class="card">
-<img src="img/Brinco-Leque-Dourado.jpg">
-<h3>Brinco Leque Dourado</h3>
-<p>R$ 72,00</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="brincos" class="produtos feminino">
+  <div class="card">
+    <img src="img/Brinco-Leque-Dourado.jpg">
+    <h3>Brinco Leque Dourado</h3>
+    <p>R$ 72,00</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino braceletes">
-<div class="card">
-<img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
-<h3>Bracelete com Pingente Coração</h3>
-<p>R$ 89,70</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="braceletes" class="produtos feminino">
+  <div class="card">
+    <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
+    <h3>Bracelete Pingente Coração</h3>
+    <p>R$ 89,70</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino colares">
-<div class="card">
-<img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
-<h3>Colar Longo Corrente Cadeado</h3>
-<p>R$ 89,70</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="colares" class="produtos feminino">
+  <div class="card">
+    <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
+    <h3>Colar Corrente Cadeado</h3>
+    <p>R$ 89,70</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino masculino infantil pingentes">
-<div class="card">
-<img src="img/Pingente-Cruz-Vazada.jpg">
-<h3>Pingente Cruz Vazada</h3>
-<p>R$ 29,70</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="pingentes" class="produtos feminino masculino infantil">
+  <div class="card">
+    <img src="img/Pingente-Cruz-Vazada.jpg">
+    <h3>Pingente Cruz Vazada</h3>
+    <p>R$ 29,70</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos masculino pulseiras">
-<div class="card">
-<img src="img/Pulseira-Masculina-Fígaro-Elos.jpg">
-<h3>Pulseira Masculina Fígaro</h3>
-<p>R$ 50,70</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="pulseiras" class="produtos masculino">
+  <div class="card">
+    <img src="img/Pulseira-Masculina-Fígaro-Elos.jpg">
+    <h3>Pulseira Masculina Fígaro</h3>
+    <p>R$ 50,70</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino piercings">
-<div class="card">
-<img src="img/piercing.jpg">
-<h3>Piercing Básico</h3>
-<p>R$ 19,90</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="piercings" class="produtos feminino">
+  <div class="card">
+    <img src="img/piercing.jpg">
+    <h3>Piercing Básico</h3>
+    <p>R$ 19,90</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino shocker">
-<div class="card">
-<img src="img/shocker.jpg">
-<h3>Shocker Preto</h3>
-<p>R$ 34,90</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="shocker" class="produtos feminino">
+  <div class="card">
+    <img src="img/shocker.jpg">
+    <h3>Shocker Preto</h3>
+    <p>R$ 34,90</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino aneis">
-<div class="card">
-<img src="img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg">
-<h3>Anel Quadrado Cravejado</h3>
-<p>R$ 108,00</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="aneis" class="produtos feminino">
+  <div class="card">
+    <img src="img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg">
+    <h3>Anel Quadrado Cravejado</h3>
+    <p>R$ 108,00</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 
-<div class="card">
-<img src="img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg">
-<h3>Anel Coração Pendurado</h3>
-<p>R$ 96,00</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+  <div class="card">
+    <img src="img/Anel-Texturizado-Coracao-Cravejado-Pendurado.jpg">
+    <h3>Anel Texturizado Coração</h3>
+    <p>R$ 96,00</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 
-<div class="card">
-<img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
-<h3>Anel Solitário Clássico</h3>
-<p>R$ 84,00</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+  <div class="card">
+    <img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
+    <h3>Anel Solitário</h3>
+    <p>R$ 84,00</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino tornozeleiras">
-<div class="card">
-<img src="img/tornozeleira.jpg">
-<h3>Tornozeleira Delicada</h3>
-<p>R$ 29,90</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="tornozeleiras" class="produtos feminino">
+  <div class="card">
+    <img src="img/tornozeleira.jpg">
+    <h3>Tornozeleira Delicada</h3>
+    <p>R$ 29,90</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
-<section class="produtos feminino infantil conjuntos">
-<div class="card">
-<img src="img/conjunto.jpg">
-<h3>Conjunto Colar + Brinco</h3>
-<p>R$ 89,90</p>
-<button onclick="comprar()">Comprar</button>
-</div>
+<section id="conjuntos" class="produtos feminino infantil">
+  <div class="card">
+    <img src="img/conjunto.jpg">
+    <h3>Conjunto Colar + Brinco</h3>
+    <p>R$ 89,90</p>
+    <button onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </section>
 
 <footer>
-<p>© 2026 - Lunna Store</p>
+  <p>© 2026 - Lunna Store</p>
 </footer>
 
 <script>
-let generoAtual="", categoriaAtual="";
+let genero="", categoria="", itens=0;
 
-function comprar(){
-  alert("Compra simulada!");
+function add(){
+  itens++;
+  document.getElementById("contador").innerText = itens;
 }
 
-function limparAtivos(id){
-  document.querySelectorAll(#${id} button).forEach(b=>b.classList.remove("ativo"));
+function abrirCarrinho(){
+  alert("Carrinho fake\nItens: " + itens);
 }
 
-function filtrarGenero(g,btn){
-  generoAtual=g;
-  limparAtivos("genero");
-  btn.classList.add("ativo");
-  filtrar();
+function ativar(botao){
+  botao.parentElement.querySelectorAll("button")
+    .forEach(b=>b.classList.remove("ativo"));
+  botao.classList.add("ativo");
 }
 
-function filtrarCategoria(c,btn){
-  categoriaAtual=c;
-  limparAtivos("categoria");
-  btn.classList.add("ativo");
-  filtrar();
+function setGenero(g,b){
+  genero=g; ativar(b); filtrar();
+}
+
+function setCategoria(c,b){
+  categoria=c; ativar(b); filtrar();
 }
 
 function filtrar(){
   document.querySelectorAll(".produtos").forEach(p=>{
-    p.style.display="none";
-    if(
-      (!generoAtual || p.classList.contains(generoAtual)) &&
-      (!categoriaAtual || p.classList.contains(categoriaAtual))
-    ){
-      p.style.display="grid";
-    }
+    let g = !genero || p.classList.contains(genero);
+    let c = !categoria || p.id===categoria;
+    p.style.display = (g && c) ? "grid" : "none";
   });
 }
 </script>

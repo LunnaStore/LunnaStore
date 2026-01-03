@@ -6,51 +6,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{margin:0;font-family:Arial;background:#f4f4f4}
-header{background:#111;color:#fff;text-align:center;padding:15px}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f4f4;
+}
 
-.abas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#222;padding:10px}
+header{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+}
+
+.abas{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  background:#222;
+  padding:10px;
+}
+
 .abas button{
-  background:#444;color:#fff;border:none;
-  padding:8px 14px;border-radius:6px;cursor:pointer
+  background:#444;
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
 }
-.abas button.active{background:#fff;color:#111;font-weight:bold}
 
-.produtos{display:none;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:20px}
+.abas button.active{
+  background:#fff;
+  color:#111;
+  font-weight:bold;
+}
+
+.produtos{
+  display:none;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
 .card{
-  background:#fff;border-radius:10px;padding:12px;
-  box-shadow:0 2px 6px rgba(0,0,0,.2);text-align:center
-}
-.card img{max-width:150px;width:100%;border-radius:8px}
-.card button{margin-top:8px;padding:8px;border:none;border-radius:5px;background:#00a859;color:#fff;cursor:pointer}
-
-#cartBtn{
-  position:fixed;bottom:20px;right:20px;
-  background:#111;color:#fff;border:none;
-  padding:12px 16px;border-radius:50%;font-size:18px;cursor:pointer
+  background:#fff;
+  border-radius:10px;
+  padding:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.2);
+  text-align:center;
 }
 
-#cart{
-  position:fixed;top:0;right:-100%;
-  width:320px;height:100%;
-  background:#fff;box-shadow:-3px 0 8px rgba(0,0,0,.3);
-  padding:15px;transition:.3s;overflow:auto;z-index:999
-}
-#cart.open{right:0}
-
-.cart-item{
-  display:flex;gap:10px;margin-bottom:12px;align-items:center
-}
-.cart-item img{width:50px;border-radius:5px}
-
-.qty{
-  display:flex;gap:5px;align-items:center
-}
-.qty button{
-  padding:4px 8px;border:none;border-radius:4px;cursor:pointer
+.card img{
+  width:100%;
+  max-width:160px;
+  border-radius:8px;
 }
 
-footer{background:#111;color:#fff;text-align:center;padding:10px}
+footer{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:10px;
+}
 </style>
 </head>
 
@@ -61,7 +80,7 @@ footer{background:#111;color:#fff;text-align:center;padding:10px}
 <p>Semi-Joias de qualidade</p>
 </header>
 
-<!-- GÊNERO -->
+<!-- GÊNEROS -->
 <nav class="abas" id="generos">
 <button onclick="setGenero('feminino',this)">Feminino</button>
 <button onclick="setGenero('masculino',this)">Masculino</button>
@@ -71,154 +90,130 @@ footer{background:#111;color:#fff;text-align:center;padding:10px}
 <!-- CATEGORIAS -->
 <nav class="abas" id="categorias">
 <button onclick="setCategoria('brincos',this)">Brincos</button>
+<button onclick="setCategoria('braceletes',this)">Braceletes</button>
 <button onclick="setCategoria('colares',this)">Colares</button>
-<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
-<button onclick="setCategoria('aneis',this)">Anéis</button>
 <button onclick="setCategoria('pingentes',this)">Pingentes</button>
+<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
+<button onclick="setCategoria('piercings',this)">Piercings</button>
+<button onclick="setCategoria('shocker',this)">Shocker</button>
+<button onclick="setCategoria('aneis',this)">Anéis</button>
+<button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
+<button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
 </nav>
 
 <!-- PRODUTOS -->
+
 <section class="produtos feminino brincos">
-<div class="card">
-<img src="img/Brinco-Leque-Dourado.jpg">
-<h3>Brinco Leque</h3>
-<p>R$72,00</p>
-<button onclick="addCart('Brinco Leque',72,this)">Adicionar</button>
-</div>
+  <div class="card">
+    <img src="img/Brinco-Leque-Dourado.jpg">
+    <h3>Brinco Leque Dourado</h3>
+    <p>R$ 72,00</p>
+  </div>
+</section>
+
+<section class="produtos feminino braceletes">
+  <div class="card">
+    <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
+    <h3>Bracelete Coração</h3>
+    <p>R$ 89,70</p>
+  </div>
 </section>
 
 <section class="produtos feminino colares">
-<div class="card">
-<img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
-<h3>Colar Longo</h3>
-<p>R$89,70</p>
-<button onclick="addCart('Colar Longo',89.7,this)">Adicionar</button>
-</div>
+  <div class="card">
+    <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
+    <h3>Colar Longo</h3>
+    <p>R$ 89,70</p>
+  </div>
+</section>
+
+<section class="produtos feminino masculino infantil pingentes">
+  <div class="card">
+    <img src="img/Pingente-Cruz-Vazada.jpg">
+    <h3>Pingente Cruz</h3>
+    <p>R$ 29,70</p>
+  </div>
 </section>
 
 <section class="produtos masculino pulseiras">
-<div class="card">
-<img src="img/Pulseira-Masculina-Figaro-Elos.jpg">
-<h3>Pulseira Masculina</h3>
-<p>R$50,70</p>
-<button onclick="addCart('Pulseira Masculina',50.7,this)">Adicionar</button>
-</div>
+  <div class="card">
+    <img src="img/Pulseira-Masculina-Figaro-Elos.jpg">
+    <h3>Pulseira Masculina</h3>
+    <p>R$ 50,70</p>
+  </div>
+</section>
+
+<section class="produtos feminino piercings">
+  <div class="card">
+    <img src="img/piercing.jpg">
+    <h3>Piercing</h3>
+    <p>R$ 19,90</p>
+  </div>
+</section>
+
+<section class="produtos feminino shocker">
+  <div class="card">
+    <img src="img/shocker.jpg">
+    <h3>Shocker</h3>
+    <p>R$ 34,90</p>
+  </div>
 </section>
 
 <section class="produtos feminino aneis">
-<div class="card">
-<img src="img/Anel-Quadrado-Cravejado-Dourado.jpg">
-<h3>Anel Dourado</h3>
-<p>R$108,00</p>
-<button onclick="addCart('Anel Dourado',108,this)">Adicionar</button>
-</div>
+  <div class="card">
+    <img src="img/Anel-Quadrado-Cravejado-Dourado.jpg">
+    <h3>Anel Dourado</h3>
+    <p>R$ 108,00</p>
+  </div>
 </section>
 
-<section class="produtos feminino pingentes">
-<div class="card">
-<img src="img/Pingente-Cruz-Vazada.jpg">
-<h3>Pingente Cruz</h3>
-<p>R$29,70</p>
-<button onclick="addCart('Pingente Cruz',29.7,this)">Adicionar</button>
-</div>
+<section class="produtos feminino tornozeleiras">
+  <div class="card">
+    <img src="img/tornozeleira.jpg">
+    <h3>Tornozeleira</h3>
+    <p>R$ 29,90</p>
+  </div>
 </section>
 
-<!-- BOTÃO -->
-<button id="cartBtn" onclick="toggleCart()">🛒</button>
-
-<!-- CARRINHO -->
-<div id="cart">
-<h2>Carrinho</h2>
-<div id="cartItems"></div>
-
-<button onclick="finalizar()" style="width:100%;padding:10px;background:#25d366;color:#fff;border:none;border-radius:6px">
-Atendimento WhatsApp
-</button>
-</div>
+<section class="produtos feminino infantil conjuntos">
+  <div class="card">
+    <img src="img/conjunto.jpg">
+    <h3>Conjunto</h3>
+    <p>R$ 89,90</p>
+  </div>
+</section>
 
 <footer>© 2026 - Lunna Store</footer>
 
 <script>
-let generoAtual='feminino'
-let categoriaAtual='brincos'
-let cart=JSON.parse(localStorage.getItem('cart'))||[]
+let generoAtual = 'feminino'
+let categoriaAtual = 'brincos'
 
 function setGenero(g,btn){
-generoAtual=g
-document.querySelectorAll('#generos button').forEach(b=>b.classList.remove('active'))
-btn.classList.add('active')
-render()
+  generoAtual = g
+  document.querySelectorAll('#generos button').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  render()
 }
 
 function setCategoria(c,btn){
-categoriaAtual=c
-document.querySelectorAll('#categorias button').forEach(b=>b.classList.remove('active'))
-btn.classList.add('active')
-render()
+  categoriaAtual = c
+  document.querySelectorAll('#categorias button').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  render()
 }
 
 function render(){
-document.querySelectorAll('.produtos').forEach(p=>p.style.display='none')
-document.querySelectorAll(.${generoAtual}.${categoriaAtual}).forEach(p=>p.style.display='grid')
+  document.querySelectorAll('.produtos').forEach(p=>p.style.display='none')
+  document.querySelectorAll(.${generoAtual}.${categoriaAtual})
+    .forEach(p=>p.style.display='grid')
 }
 
-function addCart(nome,preco,btn){
-const img=btn.parentElement.querySelector('img').src
-const item=cart.find(i=>i.nome===nome)
-if(item){item.qtd++}
-else{cart.push({nome,preco,img,qtd:1})}
-save()
-loadCart()
+/* ESTADO INICIAL */
+window.onload = () => {
+  setGenero('feminino', document.querySelector('#generos button'))
+  setCategoria('brincos', document.querySelector('#categorias button'))
 }
-
-function loadCart(){
-const el=document.getElementById('cartItems')
-el.innerHTML=''
-cart.forEach((i,idx)=>{
-el.innerHTML+=`
-<div class="cart-item">
-<img src="${i.img}">
-<div>
-${i.nome}<br>R$ ${i.preco.toFixed(2)}
-<div class="qty">
-<button onclick="changeQty(${idx},-1)">−</button>
-${i.qtd}
-<button onclick="changeQty(${idx},1)">+</button>
-</div>
-</div>
-<button onclick="removeItem(${idx})">❌</button>
-</div>`
-})
-}
-
-function changeQty(i,v){
-cart[i].qtd+=v
-if(cart[i].qtd<=0)cart.splice(i,1)
-save();loadCart()
-}
-
-function removeItem(i){
-cart.splice(i,1)
-save();loadCart()
-}
-
-function save(){
-localStorage.setItem('cart',JSON.stringify(cart))
-}
-
-function toggleCart(){
-document.getElementById('cart').classList.toggle('open')
-}
-
-function finalizar(){
-let msg='Olá! Quero comprar:%0A'
-cart.forEach(i=>msg+=- ${i.nome} x${i.qtd}%0A)
-window.open(https://wa.me/55SEUNUMEROAQUI?text=${msg})
-}
-
-loadCart()
-setGenero('feminino', document.querySelector('#generos button'))
-setCategoria('brincos', document.querySelector('#categorias button'))
 </script>
 
 </body>

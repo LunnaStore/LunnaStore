@@ -241,8 +241,11 @@ function setCategoria(c, btn){
 }
 
 function render(){
+  // Oculta todas as seções de produtos
   document.querySelectorAll('.produtos').forEach(p => p.style.display='none');
-  const elementos = document.querySelectorAll(.${generoAtual}.${categoriaAtual});
+  
+  // Mostra apenas a seção que combina gênero e categoria
+  const elementos = document.querySelectorAll(.produtos.${generoAtual}.${categoriaAtual});
   elementos.forEach(p => p.style.display='grid');
 }
   

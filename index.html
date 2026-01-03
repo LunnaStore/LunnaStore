@@ -7,24 +7,39 @@
 
 <style>
 body{margin:0;font-family:Arial;background:#f4f4f4}
-header{background:#111;color:#fff;text-align:center;padding:15px}
+header{background:#111;color:#fff;padding:15px;text-align:center}
 
-.abas{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;background:#222;padding:10px}
-.abas button{background:#444;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer}
+.abas{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;background:#222;padding:10px}
+.abas button{background:#444;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
 .abas button.ativo{background:#fff;color:#000}
 
-.container{padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.card{background:#fff;border-radius:10px;padding:15px;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.2)}
-.card img{width:100%;max-width:180px;margin:auto;border-radius:10px}
-.card button{margin-top:10px;background:#00a859;color:#fff;border:none;padding:10px;border-radius:6px;cursor:pointer}
+.produtos{display:none;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px}
+.card{background:#fff;border-radius:10px;padding:15px;box-shadow:0 2px 5px rgba(0,0,0,.2);text-align:center}
+.card img{max-width:180px;width:100%;border-radius:10px}
+.card button{background:#00a859;color:#fff;border:none;padding:10px;border-radius:5px;margin-top:10px;cursor:pointer}
 
-#carrinhoBtn{position:fixed;bottom:20px;right:20px;background:#000;color:#fff;padding:15px;border-radius:50%;cursor:pointer}
+#carrinhoBtn{
+position:fixed;bottom:20px;right:20px;
+background:#000;color:#fff;padding:14px;border-radius:50%;
+cursor:pointer;font-size:18px
+}
 
-#modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6)}
-#modalContent{background:#fff;max-width:420px;margin:80px auto;padding:20px;border-radius:10px}
+#modal{
+display:none;position:fixed;inset:0;
+background:rgba(0,0,0,.6)
+}
 
-.item{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.item button{background:red;color:#fff;border:none;padding:4px 8px;border-radius:4px}
+#carrinho{
+background:#fff;max-width:420px;margin:40px auto;
+padding:20px;border-radius:10px
+}
+
+.item{display:flex;gap:10px;margin-bottom:10px;align-items:center}
+.item img{width:60px;border-radius:6px}
+
+.item button{padding:3px 6px}
+
+footer{background:#111;color:#fff;text-align:center;padding:10px}
 </style>
 </head>
 
@@ -32,172 +47,157 @@ header{background:#111;color:#fff;text-align:center;padding:15px}
 
 <header>
 <h1>Lunna Store</h1>
-<p>Semi-joias de qualidade</p>
+<p>Semi-Joias de qualidade</p>
 </header>
 
+<!-- GÊNERO -->
 <nav class="abas" id="abasGenero">
-<button onclick="setGenero('feminino',this)">Feminino</button>
-<button onclick="setGenero('masculino',this)">Masculino</button>
-<button onclick="setGenero('infantil',this)">Infantil</button>
+<button onclick="filtrarGenero('feminino',this)">Feminino</button>
+<button onclick="filtrarGenero('masculino',this)">Masculino</button>
+<button onclick="filtrarGenero('infantil',this)">Infantil</button>
 </nav>
 
-<nav class="abas" id="abasCategoria">
-<button onclick="setCategoria('brincos',this)">Brincos</button>
-<button onclick="setCategoria('braceletes',this)">Braceletes</button>
-<button onclick="setCategoria('colares',this)">Colares</button>
-<button onclick="setCategoria('pingentes',this)">Pingentes</button>
-<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
-<button onclick="setCategoria('piercings',this)">Piercings</button>
-<button onclick="setCategoria('shocker',this)">Shocker</button>
-<button onclick="setCategoria('aneis',this)">Anéis</button>
-<button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
-<button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
+<!-- CATEGORIAS -->
+<nav class="abas" id="abasCat">
+<button onclick="filtrarCat('brincos',this)">Brincos</button>
+<button onclick="filtrarCat('braceletes',this)">Braceletes</button>
+<button onclick="filtrarCat('colares',this)">Colares</button>
+<button onclick="filtrarCat('pingentes',this)">Pingentes</button>
+<button onclick="filtrarCat('pulseiras',this)">Pulseiras</button>
+<button onclick="filtrarCat('aneis',this)">Anéis</button>
 </nav>
 
-<div class="container">
-
-<div class="card feminino brincos">
+<!-- PRODUTOS -->
+<section class="produtos feminino brincos">
+<div class="card">
 <img src="img/Brinco-Leque-Dourado.jpg">
 <h3>Brinco Leque Dourado</h3>
 <p>R$ 72,00</p>
-<button onclick="add('Brinco Leque Dourado',72)">Adicionar</button>
+<button onclick="add('Brinco Leque Dourado',72,'img/Brinco-Leque-Dourado.jpg')">Adicionar</button>
 </div>
+</section>
 
-<div class="card feminino braceletes">
+<section class="produtos feminino braceletes">
+<div class="card">
 <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
 <h3>Bracelete Coração</h3>
 <p>R$ 89,70</p>
-<button onclick="add('Bracelete Coração',89.7)">Adicionar</button>
+<button onclick="add('Bracelete Coração',89.7,'img/Bracelete-Pingente-Coracao-Dourado.jpg')">Adicionar</button>
 </div>
+</section>
 
-<div class="card feminino colares">
+<section class="produtos feminino colares">
+<div class="card">
 <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
 <h3>Colar Longo</h3>
 <p>R$ 89,70</p>
-<button onclick="add('Colar Longo',89.7)">Adicionar</button>
+<button onclick="add('Colar Longo',89.7,'img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg')">Adicionar</button>
 </div>
+</section>
 
-<div class="card feminino masculino infantil pingentes">
-<img src="img/Pingente-Cruz-Vazada.jpg">
-<h3>Pingente Cruz</h3>
-<p>R$ 29,70</p>
-<button onclick="add('Pingente Cruz',29.7)">Adicionar</button>
-</div>
-
-<div class="card masculino pulseiras">
+<section class="produtos masculino pulseiras">
+<div class="card">
 <img src="img/Pulseira-Masculina-Figaro-Elos.jpg">
 <h3>Pulseira Masculina</h3>
 <p>R$ 50,70</p>
-<button onclick="add('Pulseira Masculina',50.7)">Adicionar</button>
+<button onclick="add('Pulseira Masculina',50.7,'img/Pulseira-Masculina-Figaro-Elos.jpg')">Adicionar</button>
 </div>
+</section>
 
-<div class="card feminino piercings">
-<img src="img/piercing.jpg">
-<h3>Piercing</h3>
-<p>R$ 19,90</p>
-<button onclick="add('Piercing',19.9)">Adicionar</button>
-</div>
-
-<div class="card feminino shocker">
-<img src="img/shocker.jpg">
-<h3>Shocker</h3>
-<p>R$ 34,90</p>
-<button onclick="add('Shocker',34.9)">Adicionar</button>
-</div>
-
-<div class="card feminino aneis">
-<img src="img/Anel-Quadrado-Cravejado-Dourado-Zirconias.jpg">
-<h3>Anel Cravejado</h3>
+<section class="produtos feminino aneis">
+<div class="card">
+<img src="img/Anel-Quadrado-Cravejado.jpg">
+<h3>Anel Quadrado</h3>
 <p>R$ 108,00</p>
-<button onclick="add('Anel Cravejado',108)">Adicionar</button>
+<button onclick="add('Anel Quadrado',108,'img/Anel-Quadrado-Cravejado.jpg')">Adicionar</button>
 </div>
+</section>
 
-<div class="card feminino tornozeleiras">
-<img src="img/tornozeleira.jpg">
-<h3>Tornozeleira</h3>
-<p>R$ 29,90</p>
-<button onclick="add('Tornozeleira',29.9)">Adicionar</button>
-</div>
+<!-- BOTÃO CARRINHO -->
+<div id="carrinhoBtn" onclick="abrir()">🛒 <span id="qtd">0</span></div>
 
-<div class="card feminino infantil conjuntos">
-<img src="img/conjunto.jpg">
-<h3>Conjunto</h3>
-<p>R$ 89,90</p>
-<button onclick="add('Conjunto',89.9)">Adicionar</button>
-</div>
-
-</div>
-
-<div id="carrinhoBtn" onclick="abrirCarrinho()">🛒 <span id="qtd">0</span></div>
-
+<!-- MODAL -->
 <div id="modal">
-<div id="modalContent">
+<div id="carrinho">
 <h2>Carrinho</h2>
 <div id="lista"></div>
 <p id="total"></p>
-<button onclick="comprarWhats()">Comprar no WhatsApp</button>
-<button onclick="fechar()">Fechar</button>
+
+<button onclick="whats()" style="width:100%;background:#00a859;color:#fff;padding:10px;border:none;border-radius:6px">
+Atendimento no WhatsApp
+</button>
+
+<button onclick="fechar()" style="width:100%;margin-top:5px">Fechar</button>
 </div>
 </div>
+
+<footer>© 2026 - Lunna Store</footer>
 
 <script>
-const whatsappNumero="5599999999999"; // TROQUE AQUI
-
-let genero="feminino";
-let categoria="brincos";
-let carrinho=JSON.parse(localStorage.getItem("carrinho"))||[];
+let carrinho = JSON.parse(localStorage.getItem("carrinho")) || []
+const numero = "5599999999999" // SEU WHATS
 
 function salvar(){localStorage.setItem("carrinho",JSON.stringify(carrinho))}
-function atualizarQtd(){document.getElementById("qtd").innerText=carrinho.length}
+function atualizar(){document.getElementById("qtd").innerText=carrinho.reduce((s,i)=>s+i.qtd,0)}
 
-function atualizar(){
-document.querySelectorAll(".card").forEach(p=>{
-p.style.display=p.classList.contains(genero)&&p.classList.contains(categoria)?"block":"none";
-});
+function add(nome,preco,img){
+let item=carrinho.find(i=>i.nome==nome)
+item?item.qtd++:carrinho.push({nome,preco,img,qtd:1})
+salvar();atualizar()
 }
 
-function ativar(btn,grupo){
-document.querySelectorAll(grupo+" button").forEach(b=>b.classList.remove("ativo"));
-btn.classList.add("ativo");
-}
-
-function setGenero(g,b){genero=g;ativar(b,"#abasGenero");atualizar()}
-function setCategoria(c,b){categoria=c;ativar(b,"#abasCategoria");atualizar()}
-
-function add(nome,preco){
-carrinho.push({nome,preco});
-salvar();atualizarQtd();
-}
-
-function remover(i){
-carrinho.splice(i,1);
-salvar();abrirCarrinho();atualizarQtd();
-}
-
-function abrirCarrinho(){
-document.getElementById("modal").style.display="block";
-let l=document.getElementById("lista");l.innerHTML="";
-let total=0;
-carrinho.forEach((i,n)=>{
-total+=i.preco;
-l.innerHTML+=<div class="item"><span>${i.nome} - R$ ${i.preco.toFixed(2)}</span><button onclick="remover(${n})">X</button></div>;
-});
-document.getElementById("total").innerHTML="<strong>Total: R$ "+total.toFixed(2)+"</strong>";
-}
-
-function comprarWhats(){
-let msg="Olá! Quero comprar:%0A";
-carrinho.forEach(i=>msg+=- ${i.nome}%0A);
-window.open(https://wa.me/${whatsappNumero}?text=${msg});
+function abrir(){
+document.getElementById("modal").style.display="block"
+let l=document.getElementById("lista")
+l.innerHTML=""
+let total=0
+carrinho.forEach((i,idx)=>{
+total+=i.preco*i.qtd
+l.innerHTML+=`
+<div class="item">
+<img src="${i.img}">
+<div>
+<b>${i.nome}</b><br>
+R$ ${i.preco.toFixed(2)}<br>
+<button onclick="menos(${idx})">-</button>
+${i.qtd}
+<button onclick="mais(${idx})">+</button>
+<button onclick="rem(${idx})">🗑</button>
+</div>
+</div>`
+})
+document.getElementById("total").innerHTML="<b>Total: R$ "+total.toFixed(2)+"</b>"
 }
 
 function fechar(){document.getElementById("modal").style.display="none"}
+function mais(i){carrinho[i].qtd++;salvar();abrir();atualizar()}
+function menos(i){carrinho[i].qtd--;if(carrinho[i].qtd<=0)carrinho.splice(i,1);salvar();abrir();atualizar()}
+function rem(i){carrinho.splice(i,1);salvar();abrir();atualizar()}
 
-window.onload=()=>{
-document.querySelector("#abasGenero button").classList.add("ativo");
-document.querySelector("#abasCategoria button").classList.add("ativo");
-atualizar();atualizarQtd();
+function whats(){
+let msg="Olá! Quero comprar:%0A"
+let total=0
+carrinho.forEach(i=>{msg+=• ${i.nome} (x${i.qtd})%0A;total+=i.preco*i.qtd})
+msg+=Total: R$ ${total.toFixed(2)}
+window.open(https://wa.me/${numero}?text=${msg})
 }
+
+function ativar(btn,grupo){
+document.querySelectorAll(grupo+" button").forEach(b=>b.classList.remove("ativo"))
+btn.classList.add("ativo")
+}
+
+function filtrarGenero(g,btn){
+ativar(btn,"#abasGenero")
+document.querySelectorAll(".produtos").forEach(p=>p.style.display=p.classList.contains(g)?"grid":"none")
+}
+
+function filtrarCat(c,btn){
+ativar(btn,"#abasCat")
+document.querySelectorAll(".produtos").forEach(p=>p.style.display=p.classList.contains(c)?"grid":"none")
+}
+
+atualizar()
 </script>
 
 </body>

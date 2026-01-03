@@ -210,10 +210,17 @@ document.getElementById("zap").href=
 "https://wa.me/55SEUNUMERO?text="+msg
 }
 
-window.onload=()=>{
-document.querySelector("#genero button").classList.add("ativo")
-document.querySelector("#categoria button").classList.add("ativo")
-filtrar()
+window.onload = () => {
+  genero = "feminino"
+  categoria = "brincos"
+
+  const btnGenero = document.querySelector('#genero button[onclick*="feminino"]')
+  const btnCategoria = document.querySelector('#categoria button[onclick*="brincos"]')
+
+  btnGenero.classList.add("ativo")
+  btnCategoria.classList.add("ativo")
+
+  filtrar()
 }
 </script>
 

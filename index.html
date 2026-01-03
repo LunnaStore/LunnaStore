@@ -123,35 +123,42 @@ footer {background:#111; color:white; text-align:center; padding:10px;}
 <footer>© 2026 - Lunna Store</footer>
 
 <script>
-let generoAtual='feminino';
-let categoriaAtual='brincos';
+let generoAtual = 'feminino';
+let categoriaAtual = 'brincos';
 
-function setGenero(g,btn){
-  generoAtual=g;
-  document.querySelectorAll('#generos button').forEach(b=>b.classList.remove('active'));
+function setGenero(g, btn){
+  generoAtual = g;
+  document.querySelectorAll('#generos button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   render();
 }
 
-function setCategoria(c,btn){
-  categoriaAtual=c;
-  document.querySelectorAll('#categorias button').forEach(b=>b.classList.remove('active'));
+function setCategoria(c, btn){
+  categoriaAtual = c;
+  document.querySelectorAll('#categorias button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   render();
 }
 
 function render(){
-  document.querySelectorAll('.produtos').forEach(p=>p.style.display='none');
-  const elementos=document.querySelectorAll(.${generoAtual}.${categoriaAtual});
+  // esconder todos os produtos
+  document.querySelectorAll('.produtos').forEach(p => p.style.display='none');
+  
+  const elementos = document.querySelectorAll(.${generoAtual}.${categoriaAtual});
+  
   if(elementos.length === 0){
-    // mostrar "Não existe esse produto"
-    const vazio = document.createElement('div');
-    vazio.classList.add('no-product');
-    vazio.textContent = 'Não existe esse produto';
-    document.body.appendChild(vazio);
+    // criar uma mensagem "Não existe produto" dentro de um section temporário
+    const temp = document.createElement('section');
+    temp.classList.add('produtos', generoAtual, categoriaAtual);
+    temp.style.display = 'grid';
+    const msg = document.createElement('div');
+    msg.classList.add('no-product');
+    msg.textContent = 'Não existe esse produto';
+    temp.appendChild(msg);
+    document.body.appendChild(temp);
   } else {
-    elementos.forEach(p=>p.style.display='grid');
-    // remover mensagens antigas de "Não existe esse produto"
+    elementos.forEach(p => p.style.display='grid');
+    // remover mensagens antigas de "Não existe produto"
     document.querySelectorAll('.no-product').forEach(n => {
       if (!n.closest(.${generoAtual}.${categoriaAtual})) n.remove();
     });

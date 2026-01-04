@@ -4,41 +4,37 @@
 <meta charset="UTF-8">
 <title>Lunna Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
-body {margin:0; font-family:Arial, sans-serif; background:#f4f4f4;}
-header {background:#111; color:white; text-align:center; padding:15px;}
+body{margin:0;font-family:Arial;background:#f4f4f4}
+header{background:#111;color:#fff;text-align:center;padding:15px}
 
-.abas {
-  display:flex; flex-wrap:wrap; gap:8px; justify-content:center; background:#222; padding:10px;
+.abas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#222;padding:10px}
+.abas button{
+  background:#444;color:#fff;border:none;
+  padding:8px 14px;border-radius:6px;cursor:pointer
 }
-.abas button {
-  background:#444; color:white; border:none; padding:8px 14px; border-radius:6px; cursor:pointer;
-}
-.abas button.active {background:white; color:#111; font-weight:bold;}
+.abas button.active{background:#fff;color:#111;font-weight:bold}
 
-.produtos {
-  display:none; 
-  grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); 
-  gap:15px; 
-  padding:20px;
+.produtos{
+  display:none;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;padding:20px
 }
-.card {
-  background:white; border-radius:10px; padding:12px;
-  box-shadow:0 2px 6px rgba(0,0,0,.2); text-align:center;
+.card{
+  background:#fff;border-radius:10px;padding:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.2);text-align:center
 }
-.card img {max-width:150px; width:100%; border-radius:8px;}
-.card button {margin-top:8px; padding:8px; border:none; border-radius:5px; background:#00a859; color:white; cursor:pointer;}
+.card img{max-width:150px;width:100%;border-radius:8px}
+.card button{margin-top:8px;padding:8px;border:none;border-radius:5px;background:#00a859;color:#fff;cursor:pointer}
 
-.no-product {
-  grid-column: 1/-1;
-  text-align: center;
-  font-size: 18px;
-  color: #333;
-  padding: 30px 0;
+.nao-existe{
+  text-align:center;
+  font-weight:bold;
+  color:#666;
+  padding:50px;
 }
 
-footer {background:#111; color:white; text-align:center; padding:10px;}
+footer{background:#111;color:#fff;text-align:center;padding:10px}
 </style>
 </head>
 
@@ -51,61 +47,53 @@ footer {background:#111; color:white; text-align:center; padding:10px;}
 
 <!-- GÊNERO -->
 <nav class="abas" id="generos">
-  <button onclick="setGenero('feminino',this)">Feminino</button>
-  <button onclick="setGenero('masculino',this)">Masculino</button>
-  <button onclick="setGenero('infantil',this)">Infantil</button>
+<button class="active" onclick="setGenero('feminino',this)">Feminino</button>
+<button onclick="setGenero('masculino',this)">Masculino</button>
+<button onclick="setGenero('infantil',this)">Infantil</button>
 </nav>
 
 <!-- CATEGORIAS -->
 <nav class="abas" id="categorias">
-  <button onclick="setCategoria('brincos',this)">Brincos</button>
-  <button onclick="setCategoria('colares',this)">Colares</button>
-  <button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
-  <button onclick="setCategoria('braceletes',this)">Braceletes</button>
-  <button onclick="setCategoria('pingentes',this)">Pingentes</button>
-  <button onclick="setCategoria('piercings',this)">Piercings</button>
-  <button onclick="setCategoria('shocker',this)">Shocker</button>
-  <button onclick="setCategoria('aneis',this)">Anéis</button>
-  <button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
-  <button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
+<button class="active" onclick="setCategoria('brincos',this)">Brincos</button>
+<button onclick="setCategoria('braceletes',this)">Braceletes</button>
+<button onclick="setCategoria('colares',this)">Colares</button>
+<button onclick="setCategoria('pingentes',this)">Pingentes</button>
+<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
+<button onclick="setCategoria('piercings',this)">Piercings</button>
+<button onclick="setCategoria('shocker',this)">Shocker</button>
+<button onclick="setCategoria('aneis',this)">Anéis</button>
+<button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
+<button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
 </nav>
 
-<!-- PRODUTOS FEMININO -->
-<section class="produtos feminino brincos">
+<!-- PRODUTOS -->
+
+<!-- FEMININO -->
+<section class="produtos feminino brincos" style="display:grid">
   <div class="card">
     <img src="img/Brinco-Leque-Dourado.jpg">
     <h3>Brinco Leque Dourado</h3>
     <p>R$72,00</p>
-    <button onclick="alert('Compra simulada!')">Comprar</button>
+    <button>Comprar</button>
   </div>
+</section>
+
+<section class="produtos feminino braceletes">
   <div class="card">
-    <img src="img/Brinco-Argola-Dourada.jpg">
-    <h3>Brinco Argola Dourada</h3>
-    <p>R$65,00</p>
-    <button onclick="alert('Compra simulada!')">Comprar</button>
+    <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
+    <h3>Bracelete Rígido Com Pingente Coração Dourado</h3>
+    <p>R$89,70</p>
+    <button>Comprar</button>
   </div>
 </section>
 
 <section class="produtos feminino colares">
   <div class="card">
     <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
-    <h3>Colar Longo Corrente</h3>
+    <h3>Colar Longo Corrente Cadeado</h3>
     <p>R$89,70</p>
-    <button onclick="alert('Compra simulada!')">Comprar</button>
+    <button>Comprar</button>
   </div>
-</section>
-
-<section class="produtos feminino pulseiras">
-  <div class="card">
-    <img src="img/Pulseira-Feminina-Dourada.jpg">
-    <h3>Pulseira Feminina Dourada</h3>
-    <p>R$58,00</p>
-    <button onclick="alert('Compra simulada!')">Comprar</button>
-  </div>
-</section>
-
-<section class="produtos feminino braceletes">
-  <div class="no-product">Não existe esse produto</div>
 </section>
 
 <section class="produtos feminino pingentes">
@@ -113,148 +101,148 @@ footer {background:#111; color:white; text-align:center; padding:10px;}
     <img src="img/Pingente-Cruz-Vazada.jpg">
     <h3>Pingente Cruz Vazada</h3>
     <p>R$29,70</p>
-    <button onclick="alert('Compra simulada!')">Comprar</button>
+    <button>Comprar</button>
   </div>
 </section>
 
 <section class="produtos feminino piercings">
-  <div class="no-product">Não existe esse produto</div>
+  <div class="card">
+    <img src="img/piercing.jpg">
+    <h3>Piercing Básico</h3>
+    <p>R$19,90</p>
+    <button>Comprar</button>
+  </div>
 </section>
 
 <section class="produtos feminino shocker">
-  <div class="no-product">Não existe esse produto</div>
+  <div class="card">
+    <img src="img/shocker.jpg">
+    <h3>Shocker Preto</h3>
+    <p>R$34,90</p>
+    <button>Comprar</button>
+  </div>
 </section>
 
 <section class="produtos feminino aneis">
   <div class="card">
-    <img src="img/Anel-Quadrado-Cravejado-Dourado.jpg">
-    <h3>Anel Dourado Cravejado</h3>
+    <img src="img/Anel-Quadrado-Cravejado-Dourado-Zirconias.jpg">
+    <h3>Anel Quadrado Dourado</h3>
     <p>R$108,00</p>
-    <button onclick="alert('Compra simulada!')">Comprar</button>
+    <button>Comprar</button>
+  </div>
+  <div class="card">
+    <img src="img/Anel-Texturizado-Coracao-Cravejado.jpg">
+    <h3>Anel Texturizado Coração</h3>
+    <p>R$96,00</p>
+    <button>Comprar</button>
+  </div>
+  <div class="card">
+    <img src="img/Anel-Solitario-Clássico.jpg">
+    <h3>Anel Solitário Clássico</h3>
+    <p>R$84,00</p>
+    <button>Comprar</button>
   </div>
 </section>
 
 <section class="produtos feminino tornozeleiras">
-  <div class="no-product">Não existe esse produto</div>
+  <div class="card">
+    <img src="img/tornozeleira.jpg">
+    <h3>Tornozeleira Delicada</h3>
+    <p>R$29,90</p>
+    <button>Comprar</button>
+  </div>
 </section>
 
 <section class="produtos feminino conjuntos">
-  <div class="no-product">Não existe esse produto</div>
+  <div class="card">
+    <img src="img/conjunto.jpg">
+    <h3>Conjunto Colar + Brinco</h3>
+    <p>R$89,90</p>
+    <button>Comprar</button>
+  </div>
 </section>
 
-<!-- PRODUTOS MASCULINO -->
-<section class="produtos masculino brincos">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
-<section class="produtos masculino colares">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
+<!-- MASCULINO -->
 <section class="produtos masculino pulseiras">
   <div class="card">
     <img src="img/Pulseira-Masculina-Figaro-Elos.jpg">
     <h3>Pulseira Masculina Fígaro</h3>
     <p>R$50,70</p>
-    <button onclick="alert('Compra simulada!')">Comprar</button>
+    <button>Comprar</button>
   </div>
 </section>
 
-<section class="produtos masculino braceletes">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
 <section class="produtos masculino pingentes">
-  <div class="no-product">Não existe esse produto</div>
+  <div class="card">
+    <img src="img/Pingente-Cruz-Vazada.jpg">
+    <h3>Pingente Cruz Masculino</h3>
+    <p>R$29,70</p>
+    <button>Comprar</button>
+  </div>
 </section>
 
-<section class="produtos masculino piercings">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
-<section class="produtos masculino shocker">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
-<section class="produtos masculino aneis">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
-<section class="produtos masculino tornozeleiras">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
-<section class="produtos masculino conjuntos">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-
-<!-- PRODUTOS INFANTIL -->
-<section class="produtos infantil brincos">
-  <div class="no-product">Não existe esse produto</div>
-</section>
+<!-- INFANTIL -->
 <section class="produtos infantil colares">
-  <div class="no-product">Não existe esse produto</div>
+  <div class="card">
+    <img src="img/Colar-Infantil.jpg">
+    <h3>Colar Infantil</h3>
+    <p>R$45,00</p>
+    <button>Comprar</button>
+  </div>
 </section>
-<section class="produtos infantil pulseiras">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-<section class="produtos infantil braceletes">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-<section class="produtos infantil pingentes">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-<section class="produtos infantil piercings">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-<section class="produtos infantil shocker">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-<section class="produtos infantil aneis">
-  <div class="no-product">Não existe esse produto</div>
-</section>
-<section class="produtos infantil tornozeleiras">
-  <div class="no-product">Não existe esse produto</div>
-</section>
+
 <section class="produtos infantil conjuntos">
-  <div class="no-product">Não existe esse produto</div>
+  <div class="card">
+    <img src="img/conjunto-infantil.jpg">
+    <h3>Conjunto Infantil Colar + Brinco</h3>
+    <p>R$59,90</p>
+    <button>Comprar</button>
+  </div>
+</section>
+
+<!-- MENSAGEM "NÃO EXISTE" -->
+<section class="produtos nao-existe" style="display:none">
+  <p>Não existe esse produto.</p>
 </section>
 
 <footer>© 2026 - Lunna Store</footer>
 
 <script>
-let generoAtual = 'feminino';
-let categoriaAtual = 'brincos';
+let generoAtual='feminino'
+let categoriaAtual='brincos'
 
-function setGenero(g, btn){
-  generoAtual = g;
-  document.querySelectorAll('#generos button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
+function setGenero(g,btn){
+  generoAtual=g
+  document.querySelectorAll('#generos button').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  render()
 }
 
-function setCategoria(c, btn){
-  categoriaAtual = c;
-  document.querySelectorAll('#categorias button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
+function setCategoria(c,btn){
+  categoriaAtual=c
+  document.querySelectorAll('#categorias button').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  render()
 }
 
 function render(){
-  // Oculta todas as seções de produtos
-  document.querySelectorAll('.produtos').forEach(p => p.style.display='none');
-  
-  // Mostra apenas a seção que combina gênero e categoria
-  const elementos = document.querySelectorAll(.produtos.${generoAtual}.${categoriaAtual});
-  elementos.forEach(p => p.style.display='grid');
-}
-  
-// Inicializar botões ativos
-document.querySelectorAll('#generos button')[0].classList.add('active'); // feminino
-document.querySelectorAll('#categorias button')[0].classList.add('active'); // brincos
+  // esconder tudo
+  document.querySelectorAll('.produtos').forEach(p=>{
+    p.style.display='none'
+  })
 
-// Renderizar produtos iniciais
-render();
+  // pegar produtos da combinação atual
+  const encontrados=document.querySelectorAll(.${generoAtual}.${categoriaAtual})
+  
+  if(encontrados.length>0){
+    encontrados.forEach(p=>p.style.display='grid')
+  }else{
+    document.querySelector('.nao-existe').style.display='grid'
+  }
+}
+
+// já exibe Feminino/Brincos
+render()
 </script>
 
 </body>

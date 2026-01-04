@@ -161,23 +161,30 @@ footer{
   <div id="carrinho" onclick="verCarrinho()">🛒 <span id="qtd">0</span></div>
 </header>
 
+<!-- GÊNERO -->
 <nav class="abas" id="abasGenero">
   <button onclick="setGenero('feminino',this)">Feminino</button>
   <button onclick="setGenero('masculino',this)">Masculino</button>
   <button onclick="setGenero('infantil',this)">Infantil</button>
 </nav>
 
+<!-- CATEGORIAS -->
 <nav class="abas" id="abasCategoria">
   <button onclick="setCategoria('brincos',this)">Brincos</button>
   <button onclick="setCategoria('braceletes',this)">Braceletes</button>
   <button onclick="setCategoria('colares',this)">Colares</button>
-  <button onclick="setCategoria('pingentes',this)">Pingentes</button>
+  <button onclick="setCategoria('shocker',this)">Shocker</button>
   <button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
+  <button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
   <button onclick="setCategoria('aneis',this)">Anéis</button>
+  <button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
+  <button onclick="setCategoria('pingentes',this)">Pingentes</button>
 </nav>
 
+<!-- PRODUTOS -->
 <section id="lista">
 
+<!-- BRINCOS -->
 <div class="card feminino brincos">
   <img src="img/Brinco-Leque-Dourado.jpg">
   <h3>Brinco Leque Dourado</h3>
@@ -185,6 +192,47 @@ footer{
   <button onclick="addCarrinho('Brinco Leque Dourado',72,'img/Brinco-Leque-Dourado.jpg')">Adicionar</button>
 </div>
 
+<!-- BRACELETES -->
+<div class="card feminino braceletes">
+  <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
+  <h3>Bracelete Coração</h3>
+  <p>R$ 89,70</p>
+  <button onclick="addCarrinho('Bracelete Coração',89.7,'img/Bracelete-Pingente-Coracao-Dourado.jpg')">Adicionar</button>
+</div>
+
+<!-- COLARES -->
+<div class="card feminino colares">
+  <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
+  <h3>Colar Longo</h3>
+  <p>R$ 89,70</p>
+  <button onclick="addCarrinho('Colar Longo',89.7,'img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg')">Adicionar</button>
+</div>
+
+<!-- SHOCKER -->
+<div class="card feminino shocker">
+  <img src="img/Shocker-Exemplo.jpg">
+  <h3>Shocker Dourada</h3>
+  <p>R$ 59,90</p>
+  <button onclick="addCarrinho('Shocker Dourada',59.9,'img/Shocker-Exemplo.jpg')">Adicionar</button>
+</div>
+
+<!-- PULSEIRAS -->
+<div class="card masculino pulseiras">
+  <img src="img/Pulseira-Masculina-Fígaro-Elos.jpg">
+  <h3>Pulseira Masculina</h3>
+  <p>R$ 50,70</p>
+  <button onclick="addCarrinho('Pulseira Masculina',50.7,'img/Pulseira-Masculina-Fígaro-Elos.jpg')">Adicionar</button>
+</div>
+
+<!-- TORNOZELEIRAS -->
+<div class="card feminino tornozeleiras">
+  <img src="img/Tornozeleira-Exemplo.jpg">
+  <h3>Tornozeleira Dourada</h3>
+  <p>R$ 49,90</p>
+  <button onclick="addCarrinho('Tornozeleira Dourada',49.9,'img/Tornozeleira-Exemplo.jpg')">Adicionar</button>
+</div>
+
+<!-- ANÉIS -->
 <div class="card feminino aneis">
   <img src="img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg">
   <h3>Anel Cravejado Quadrado</h3>
@@ -194,9 +242,9 @@ footer{
 
 <div class="card feminino aneis">
   <img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
-  <h3>Anel Solitário Clássico Cravejado</h3>
+  <h3>Anel Solitário Clássico</h3>
   <p>R$ 79,90</p>
-  <button onclick="addCarrinho('Anel Solitário Clássico Cravejado',79.9,'img/Anel-Solitário-Clássico-Cravejado.jpg')">Adicionar</button>
+  <button onclick="addCarrinho('Anel Solitário Clássico',79.9,'img/Anel-Solitário-Clássico-Cravejado.jpg')">Adicionar</button>
 </div>
 
 <div class="card feminino aneis">
@@ -206,10 +254,27 @@ footer{
   <button onclick="addCarrinho('Anel Texturizado com Coração',65,'img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg')">Adicionar</button>
 </div>
 
+<!-- CONJUNTOS -->
+<div class="card feminino conjuntos">
+  <img src="img/Conjunto-Colar-Brinco.jpg">
+  <h3>Conjunto Colar e Brinco</h3>
+  <p>R$ 149,90</p>
+  <button onclick="addCarrinho('Conjunto Colar e Brinco',149.9,'img/Conjunto-Colar-Brinco.jpg')">Adicionar</button>
+</div>
+
+<!-- PINGENTES -->
+<div class="card feminino masculino pingentes">
+  <img src="img/Pingente-Cruz-Vazada.jpg">
+  <h3>Pingente Cruz</h3>
+  <p>R$ 29,70</p>
+  <button onclick="addCarrinho('Pingente Cruz',29.7,'img/Pingente-Cruz-Vazada.jpg')">Adicionar</button>
+</div>
+
 </section>
 
 <footer>© 2026 - Lunna Store</footer>
 
+<!-- MODAL -->
 <div id="modalCarrinho" onclick="fecharCarrinho(event)">
   <div id="modalConteudo">
     <h2>Carrinho</h2>
@@ -220,81 +285,37 @@ footer{
 </div>
 
 <script>
-let genero = "feminino";
-let categoria = "brincos";
-let carrinho = {};
+let genero="feminino", categoria="brincos", carrinho={};
 
 function atualizar(){
   document.querySelectorAll(".card").forEach(p=>{
-    p.style.display =
-      p.classList.contains(genero) &&
-      p.classList.contains(categoria)
-      ? "block" : "none";
+    p.style.display=p.classList.contains(genero)&&p.classList.contains(categoria)?"block":"none";
   });
 }
 
-function ativar(botao, grupo){
-  document.querySelectorAll(grupo+" button").forEach(b=>b.classList.remove("ativo"));
-  botao.classList.add("ativo");
-}
+function ativar(btn,g){document.querySelectorAll(g+" button").forEach(b=>b.classList.remove("ativo"));btn.classList.add("ativo");}
+function setGenero(g,b){genero=g;ativar(b,"#abasGenero");atualizar();}
+function setCategoria(c,b){categoria=c;ativar(b,"#abasCategoria");atualizar();}
 
-function setGenero(g, btn){ genero=g; ativar(btn,"#abasGenero"); atualizar(); }
-function setCategoria(c, btn){ categoria=c; ativar(btn,"#abasCategoria"); atualizar(); }
-
-function addCarrinho(nome, preco, img){
-  carrinho[nome] ? carrinho[nome].qtd++ : carrinho[nome]={nome,preco,img,qtd:1};
-  atualizarQtd();
-}
-
-function atualizarQtd(){
-  document.getElementById("qtd").innerText =
-    Object.values(carrinho).reduce((s,p)=>s+p.qtd,0);
-}
+function addCarrinho(n,p,i){carrinho[n]?carrinho[n].qtd++:carrinho[n]={nome:n,preco:p,img:i,qtd:1};atualizarQtd();}
+function atualizarQtd(){document.getElementById("qtd").innerText=Object.values(carrinho).reduce((s,p)=>s+p.qtd,0);}
 
 function verCarrinho(){
-  let html="", total=0;
+  let h="",t=0;
   Object.values(carrinho).forEach(p=>{
-    total+=p.preco*p.qtd;
-    html+=`
-    <div class="itemCarrinho">
-      <img src="${p.img}">
-      <div>
-        <div>${p.nome}</div>
-        <div>R$ ${p.preco.toFixed(2)}</div>
-        <div class="qtd">
-          <button onclick="alterar('${p.nome}',-1)">-</button>
-          ${p.qtd}
-          <button onclick="alterar('${p.nome}',1)">+</button>
-        </div>
-      </div>
-    </div>`;
+    t+=p.preco*p.qtd;
+    h+=`<div class="itemCarrinho"><img src="${p.img}"><div><div>${p.nome}</div><div>R$ ${p.preco.toFixed(2)}</div><div class="qtd"><button onclick="alterar('${p.nome}',-1)">-</button>${p.qtd}<button onclick="alterar('${p.nome}',1)">+</button></div></div></div>`;
   });
-  document.getElementById("itensCarrinho").innerHTML = html || "Carrinho vazio";
-  document.getElementById("total").innerText = "Total: R$ "+total.toFixed(2);
+  document.getElementById("itensCarrinho").innerHTML=h||"Carrinho vazio";
+  document.getElementById("total").innerText="Total: R$ "+t.toFixed(2);
   document.getElementById("modalCarrinho").style.display="block";
 }
 
-function alterar(nome,v){
-  carrinho[nome].qtd+=v;
-  if(carrinho[nome].qtd<=0) delete carrinho[nome];
-  atualizarQtd(); verCarrinho();
-}
+function alterar(n,v){carrinho[n].qtd+=v;if(carrinho[n].qtd<=0)delete carrinho[n];atualizarQtd();verCarrinho();}
+function fecharCarrinho(e){if(e.target.id==="modalCarrinho")e.target.style.display="none";}
+function pagar(){alert("Pagamento realizado (simulado)");carrinho={};atualizarQtd();document.getElementById("modalCarrinho").style.display="none";}
 
-function fecharCarrinho(e){
-  if(e.target.id==="modalCarrinho") e.target.style.display="none";
-}
-
-function pagar(){
-  alert("Pagamento realizado com sucesso (simulado)");
-  carrinho={}; atualizarQtd();
-  document.getElementById("modalCarrinho").style.display="none";
-}
-
-window.onload=()=>{
-  document.querySelector("#abasGenero button").classList.add("ativo");
-  document.querySelector("#abasCategoria button").classList.add("ativo");
-  atualizar();
-};
+window.onload=()=>{document.querySelector("#abasGenero button").classList.add("ativo");document.querySelector("#abasCategoria button").classList.add("ativo");atualizar();};
 </script>
 
 </body>

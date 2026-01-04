@@ -6,316 +6,146 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f4f4;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;}
+header{background:#111;color:#fff;padding:15px;text-align:center;position:relative;}
+#carrinho{position:absolute;right:20px;top:15px;background:#fff;color:#000;padding:6px 12px;border-radius:20px;cursor:pointer}
+.abas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:10px;background:#222}
+.abas button{background:#444;color:#fff;border:none;padding:8px 12px;border-radius:5px;cursor:pointer}
+.abas button.ativo{background:#fff;color:#000;font-weight:bold}
+#lista{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px}
+.card{background:#fff;border-radius:10px;padding:15px;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.card img{width:100%;max-width:160px;margin:auto;display:block;border-radius:10px}
+.card button{background:#00a859;color:#fff;border:none;padding:10px;border-radius:5px;cursor:pointer;margin-top:10px}
 
-/* HEADER */
-header{
-  background:#111;
-  color:#fff;
-  padding:15px;
-  text-align:center;
-  position:relative;
-}
-
-#carrinho{
-  position:absolute;
-  right:20px;
-  top:15px;
-  background:#fff;
-  color:#000;
-  padding:6px 12px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-/* ABAS */
-.abas{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  padding:10px;
-  background:#222;
-}
-
-.abas button{
-  background:#444;
-  color:#fff;
-  border:none;
-  padding:8px 12px;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-.abas button.ativo{
-  background:#fff;
-  color:#000;
-  font-weight:bold;
-}
-
-/* PRODUTOS */
-#lista{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
-  gap:20px;
-  padding:20px;
-}
-
-.card{
-  background:#fff;
-  border-radius:10px;
-  padding:15px;
-  text-align:center;
-  box-shadow:0 2px 5px rgba(0,0,0,.2);
-}
-
-.card img{
-  width:100%;
-  max-width:160px;
-  margin:auto;
-  display:block;
-  border-radius:10px;
-}
-
-.card button{
-  background:#00a859;
-  color:#fff;
-  border:none;
-  padding:10px;
-  border-radius:5px;
-  cursor:pointer;
-  margin-top:10px;
-}
-
-/* MODAL CARRINHO */
-#modalCarrinho{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-}
-
-#modalConteudo{
-  background:#fff;
-  width:90%;
-  max-width:500px;
-  margin:60px auto;
-  padding:20px;
-  border-radius:10px;
-}
-
-.itemCarrinho{
-  display:flex;
-  gap:10px;
-  margin-bottom:10px;
-}
-
-.itemCarrinho img{
-  width:60px;
-  border-radius:5px;
-}
-
-.qtd{
-  display:flex;
-  gap:6px;
-  align-items:center;
-}
-
-.qtd button{
-  padding:2px 8px;
-}
-
-.total{
-  font-weight:bold;
-  margin-top:10px;
-}
-
-.pagar{
-  width:100%;
-  padding:10px;
-  background:#00a859;
-  color:#fff;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-footer{
-  background:#111;
-  color:#fff;
-  text-align:center;
-  padding:10px;
-}
+#modalCarrinho{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6)}
+#modalConteudo{background:#fff;width:90%;max-width:500px;margin:60px auto;padding:20px;border-radius:10px}
+.itemCarrinho{display:flex;gap:10px;margin-bottom:10px}
+.itemCarrinho img{width:60px;border-radius:5px}
+.qtd{display:flex;gap:6px;align-items:center}
+.qtd button{padding:2px 8px}
+.total{font-weight:bold;margin-top:10px}
+.pagar{width:100%;padding:10px;background:#00a859;color:#fff;border:none;border-radius:5px;cursor:pointer}
+footer{background:#111;color:#fff;text-align:center;padding:10px}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Lunna Store</h1>
-  <p>Semi-Joias de qualidade</p>
-  <div id="carrinho" onclick="verCarrinho()">🛒 <span id="qtd">0</span></div>
+<h1>Lunna Store</h1>
+<p>Semi-Joias de qualidade</p>
+<div id="carrinho" onclick="verCarrinho()">🛒 <span id="qtd">0</span></div>
 </header>
 
-<!-- GÊNERO -->
 <nav class="abas" id="abasGenero">
-  <button onclick="setGenero('feminino',this)">Feminino</button>
-  <button onclick="setGenero('masculino',this)">Masculino</button>
-  <button onclick="setGenero('infantil',this)">Infantil</button>
+<button onclick="setGenero('feminino',this)">Feminino</button>
+<button onclick="setGenero('masculino',this)">Masculino</button>
+<button onclick="setGenero('infantil',this)">Infantil</button>
 </nav>
 
-<!-- CATEGORIAS -->
 <nav class="abas" id="abasCategoria">
-  <button onclick="setCategoria('brincos',this)">Brincos</button>
-  <button onclick="setCategoria('braceletes',this)">Braceletes</button>
-  <button onclick="setCategoria('colares',this)">Colares</button>
-  <button onclick="setCategoria('shocker',this)">Shocker</button>
-  <button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
-  <button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
-  <button onclick="setCategoria('aneis',this)">Anéis</button>
-  <button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
-  <button onclick="setCategoria('pingentes',this)">Pingentes</button>
+<button onclick="setCategoria('brincos',this)">Brincos</button>
+<button onclick="setCategoria('braceletes',this)">Braceletes</button>
+<button onclick="setCategoria('colares',this)">Colares</button>
+<button onclick="setCategoria('shocker',this)">Shocker</button>
+<button onclick="setCategoria('pulseiras',this)">Pulseiras</button>
+<button onclick="setCategoria('tornozeleiras',this)">Tornozeleiras</button>
+<button onclick="setCategoria('aneis',this)">Anéis</button>
+<button onclick="setCategoria('conjuntos',this)">Conjuntos</button>
+<button onclick="setCategoria('pingentes',this)">Pingentes</button>
 </nav>
 
-<!-- PRODUTOS -->
 <section id="lista">
-
-<!-- BRINCOS -->
 <div class="card feminino brincos">
-  <img src="img/Brinco-Leque-Dourado.jpg">
-  <h3>Brinco Leque Dourado</h3>
-  <p>R$ 72,00</p>
-  <button onclick="addCarrinho('Brinco Leque Dourado',72,'img/Brinco-Leque-Dourado.jpg')">Adicionar</button>
-</div>
-
-<!-- BRACELETES -->
-<div class="card feminino braceletes">
-  <img src="img/Bracelete-Pingente-Coracao-Dourado.jpg">
-  <h3>Bracelete Coração</h3>
-  <p>R$ 89,70</p>
-  <button onclick="addCarrinho('Bracelete Coração',89.7,'img/Bracelete-Pingente-Coracao-Dourado.jpg')">Adicionar</button>
-</div>
-
-<!-- COLARES -->
-<div class="card feminino colares">
-  <img src="img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg">
-  <h3>Colar Longo</h3>
-  <p>R$ 89,70</p>
-  <button onclick="addCarrinho('Colar Longo',89.7,'img/Colar-Longo-Corrente-Cadeado-Bolinhas.jpg')">Adicionar</button>
-</div>
-
-<!-- SHOCKER -->
-<div class="card feminino shocker">
-  <img src="img/Shocker-Exemplo.jpg">
-  <h3>Shocker Dourada</h3>
-  <p>R$ 59,90</p>
-  <button onclick="addCarrinho('Shocker Dourada',59.9,'img/Shocker-Exemplo.jpg')">Adicionar</button>
-</div>
-
-<!-- PULSEIRAS -->
-<div class="card masculino pulseiras">
-  <img src="img/Pulseira-Masculina-Fígaro-Elos.jpg">
-  <h3>Pulseira Masculina</h3>
-  <p>R$ 50,70</p>
-  <button onclick="addCarrinho('Pulseira Masculina',50.7,'img/Pulseira-Masculina-Fígaro-Elos.jpg')">Adicionar</button>
-</div>
-
-<!-- TORNOZELEIRAS -->
-<div class="card feminino tornozeleiras">
-  <img src="img/Tornozeleira-Exemplo.jpg">
-  <h3>Tornozeleira Dourada</h3>
-  <p>R$ 49,90</p>
-  <button onclick="addCarrinho('Tornozeleira Dourada',49.9,'img/Tornozeleira-Exemplo.jpg')">Adicionar</button>
-</div>
-
-<!-- ANÉIS -->
-<div class="card feminino aneis">
-  <img src="img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg">
-  <h3>Anel Cravejado Quadrado</h3>
-  <p>R$ 108,00</p>
-  <button onclick="addCarrinho('Anel Cravejado Quadrado',108,'img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg')">Adicionar</button>
+<img src="img/Brinco-Leque-Dourado.jpg">
+<h3>Brinco Leque Dourado</h3>
+<p>R$ 72,00</p>
+<button onclick="addCarrinho('Brinco Leque Dourado',72,'img/Brinco-Leque-Dourado.jpg')">Adicionar</button>
 </div>
 
 <div class="card feminino aneis">
-  <img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
-  <h3>Anel Solitário Clássico</h3>
-  <p>R$ 79,90</p>
-  <button onclick="addCarrinho('Anel Solitário Clássico',79.9,'img/Anel-Solitário-Clássico-Cravejado.jpg')">Adicionar</button>
+<img src="img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg">
+<h3>Anel Cravejado Quadrado</h3>
+<p>R$ 108,00</p>
+<button onclick="addCarrinho('Anel Cravejado Quadrado',108,'img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg')">Adicionar</button>
 </div>
 
 <div class="card feminino aneis">
-  <img src="img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg">
-  <h3>Anel Texturizado com Coração</h3>
-  <p>R$ 65,00</p>
-  <button onclick="addCarrinho('Anel Texturizado com Coração',65,'img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg')">Adicionar</button>
+<img src="img/Anel-Solitário-Clássico-Cravejado.jpg">
+<h3>Anel Solitário Clássico</h3>
+<p>R$ 79,90</p>
+<button onclick="addCarrinho('Anel Solitário Clássico',79.9,'img/Anel-Solitário-Clássico-Cravejado.jpg')">Adicionar</button>
 </div>
 
-<!-- CONJUNTOS -->
-<div class="card feminino conjuntos">
-  <img src="img/Conjunto-Colar-Brinco.jpg">
-  <h3>Conjunto Colar e Brinco</h3>
-  <p>R$ 149,90</p>
-  <button onclick="addCarrinho('Conjunto Colar e Brinco',149.9,'img/Conjunto-Colar-Brinco.jpg')">Adicionar</button>
+<div class="card feminino aneis">
+<img src="img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg">
+<h3>Anel Texturizado com Coração</h3>
+<p>R$ 65,00</p>
+<button onclick="addCarrinho('Anel Texturizado com Coração',65,'img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg')">Adicionar</button>
 </div>
-
-<!-- PINGENTES -->
-<div class="card feminino masculino pingentes">
-  <img src="img/Pingente-Cruz-Vazada.jpg">
-  <h3>Pingente Cruz</h3>
-  <p>R$ 29,70</p>
-  <button onclick="addCarrinho('Pingente Cruz',29.7,'img/Pingente-Cruz-Vazada.jpg')">Adicionar</button>
-</div>
-
 </section>
 
 <footer>© 2026 - Lunna Store</footer>
 
-<!-- MODAL -->
 <div id="modalCarrinho" onclick="fecharCarrinho(event)">
-  <div id="modalConteudo">
-    <h2>Carrinho</h2>
-    <div id="itensCarrinho"></div>
-    <div class="total" id="total"></div>
-    <button class="pagar" onclick="pagar()">Pagar (simulado)</button>
-  </div>
+<div id="modalConteudo">
+<h2>Carrinho</h2>
+<div id="itensCarrinho"></div>
+<div class="total" id="total"></div>
+<button class="pagar" onclick="pagar()">Pagar (simulado)</button>
+</div>
 </div>
 
 <script>
-let genero="feminino", categoria="brincos", carrinho={};
+let genero="feminino",categoria="brincos";
+let carrinho=JSON.parse(localStorage.getItem("carrinho"))||{};
+
+function salvar(){localStorage.setItem("carrinho",JSON.stringify(carrinho));}
+function atualizarQtd(){
+document.getElementById("qtd").innerText=
+Object.values(carrinho).reduce((s,p)=>s+p.qtd,0);
+}
 
 function atualizar(){
-  document.querySelectorAll(".card").forEach(p=>{
-    p.style.display=p.classList.contains(genero)&&p.classList.contains(categoria)?"block":"none";
-  });
+document.querySelectorAll(".card").forEach(p=>{
+p.style.display=p.classList.contains(genero)&&p.classList.contains(categoria)?"block":"none";
+});
 }
 
 function ativar(btn,g){document.querySelectorAll(g+" button").forEach(b=>b.classList.remove("ativo"));btn.classList.add("ativo");}
 function setGenero(g,b){genero=g;ativar(b,"#abasGenero");atualizar();}
 function setCategoria(c,b){categoria=c;ativar(b,"#abasCategoria");atualizar();}
 
-function addCarrinho(n,p,i){carrinho[n]?carrinho[n].qtd++:carrinho[n]={nome:n,preco:p,img:i,qtd:1};atualizarQtd();}
-function atualizarQtd(){document.getElementById("qtd").innerText=Object.values(carrinho).reduce((s,p)=>s+p.qtd,0);}
-
-function verCarrinho(){
-  let h="",t=0;
-  Object.values(carrinho).forEach(p=>{
-    t+=p.preco*p.qtd;
-    h+=`<div class="itemCarrinho"><img src="${p.img}"><div><div>${p.nome}</div><div>R$ ${p.preco.toFixed(2)}</div><div class="qtd"><button onclick="alterar('${p.nome}',-1)">-</button>${p.qtd}<button onclick="alterar('${p.nome}',1)">+</button></div></div></div>`;
-  });
-  document.getElementById("itensCarrinho").innerHTML=h||"Carrinho vazio";
-  document.getElementById("total").innerText="Total: R$ "+t.toFixed(2);
-  document.getElementById("modalCarrinho").style.display="block";
+function addCarrinho(n,p,i){
+carrinho[n]?carrinho[n].qtd++:carrinho[n]={nome:n,preco:p,img:i,qtd:1};
+salvar();atualizarQtd();
 }
 
-function alterar(n,v){carrinho[n].qtd+=v;if(carrinho[n].qtd<=0)delete carrinho[n];atualizarQtd();verCarrinho();}
-function fecharCarrinho(e){if(e.target.id==="modalCarrinho")e.target.style.display="none";}
-function pagar(){alert("Pagamento realizado (simulado)");carrinho={};atualizarQtd();document.getElementById("modalCarrinho").style.display="none";}
+function verCarrinho(){
+let h="",t=0;
+Object.values(carrinho).forEach(p=>{
+t+=p.preco*p.qtd;
+h+=`<div class="itemCarrinho"><img src="${p.img}"><div><div>${p.nome}</div><div>R$ ${p.preco.toFixed(2)}</div><div class="qtd"><button onclick="alterar('${p.nome}',-1)">-</button>${p.qtd}<button onclick="alterar('${p.nome}',1)">+</button></div></div></div>`;
+});
+document.getElementById("itensCarrinho").innerHTML=h||"Carrinho vazio";
+document.getElementById("total").innerText="Total: R$ "+t.toFixed(2);
+document.getElementById("modalCarrinho").style.display="block";
+}
 
-window.onload=()=>{document.querySelector("#abasGenero button").classList.add("ativo");document.querySelector("#abasCategoria button").classList.add("ativo");atualizar();};
+function alterar(n,v){
+carrinho[n].qtd+=v;
+if(carrinho[n].qtd<=0)delete carrinho[n];
+salvar();atualizarQtd();verCarrinho();
+}
+
+function fecharCarrinho(e){if(e.target.id==="modalCarrinho")e.target.style.display="none";}
+function pagar(){alert("Pagamento simulado");carrinho={};salvar();atualizarQtd();document.getElementById("modalCarrinho").style.display="none";}
+
+window.onload=()=>{
+document.querySelector("#abasGenero button").classList.add("ativo");
+document.querySelector("#abasCategoria button").classList.add("ativo");
+atualizar();atualizarQtd();
+};
 </script>
 
 </body>

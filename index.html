@@ -55,35 +55,7 @@ footer{background:#111;color:#fff;text-align:center;padding:10px}
 <button onclick="setCategoria('pingentes',this)">Pingentes</button>
 </nav>
 
-<section id="lista">
-<div class="card feminino brincos">
-<img src="img/Brinco-Leque-Dourado.jpg">
-<h3>Brinco Leque Dourado</h3>
-<p>R$ 72,00</p>
-<button onclick="addCarrinho('Brinco Leque Dourado',72,'img/Brinco-Leque-Dourado.jpg')">Adicionar</button>
-</div>
-
-<div class="card feminino aneis">
-<img src="img/Anel-Quadrado-Cravejado-Dourado-Zirconias.jpg">
-<h3>Anel Cravejado Quadrado</h3>
-<p>R$ 108,00</p>
-<button onclick="addCarrinho('Anel Cravejado Quadrado',108,'img/Anel-Quadrado-Cravejado-Dourado-Zircônias.jpg')">Adicionar</button>
-</div>
-
-<div class="card feminino aneis">
-<img src="img/Anel-Solitário-Classico-Cravejado.jpg">
-<h3>Anel Solitário Clássico</h3>
-<p>R$ 79,90</p>
-<button onclick="addCarrinho('Anel Solitario Clássico',79.9,'img/Anel-Solitário-Clássico-Cravejado.jpg')">Adicionar</button>
-</div>
-
-<div class="card feminino aneis">
-<img src="img/Anel-Texturizado-Coracao-Cravejado-Pendurado.jpg">
-<h3>Anel Texturizado com Coração</h3>
-<p>R$ 65,00</p>
-<button onclick="addCarrinho('Anel Texturizado com Coração',65,'img/Anel-Texturizado-Coracão-Cravejado-Pendurado.jpg')">Adicionar</button>
-</div>
-</section>
+<section id="lista"></section>
 
 <footer>© 2026 - Lunna Store</footer>
 
@@ -99,6 +71,7 @@ footer{background:#111;color:#fff;text-align:center;padding:10px}
 <script>
 let genero="feminino",categoria="brincos";
 let carrinho=JSON.parse(localStorage.getItem("carrinho"))||{};
+let produtos=[];
 
 function salvar(){localStorage.setItem("carrinho",JSON.stringify(carrinho));}
 function atualizarQtd(){
@@ -106,26 +79,62 @@ document.getElementById("qtd").innerText=
 Object.values(carrinho).reduce((s,p)=>s+p.qtd,0);
 }
 
-function atualizar(){
-document.querySelectorAll(".card").forEach(p=>{
-p.style.display=p.classList.contains(genero)&&p.classList.contains(categoria)?"block":"none";
-});
+function ativar(btn,g){
+document.querySelectorAll(g+" button").forEach(b=>b.classList.remove("ativo"));
+btn.classList.add("ativo");
 }
 
-function ativar(btn,g){document.querySelectorAll(g+" button").forEach(b=>b.classList.remove("ativo"));btn.classList.add("ativo");}
-function setGenero(g,b){genero=g;ativar(b,"#abasGenero");atualizar();}
-function setCategoria(c,b){categoria=c;ativar(b,"#abasCategoria");atualizar();}
+function setGenero(g,b){genero=g;ativar(b,"#abasGenero");render();}
+function setCategoria(c,b){categoria=c;ativar(b,"#abasCategoria");render();}
 
-function addCarrinho(n,p,i){
-carrinho[n]?carrinho[n].qtd++:carrinho[n]={nome:n,preco:p,img:i,qtd:1};
-salvar();atualizarQtd();
+function addCarrinho(p){
+if(p.estoque<=0)return;
+p.estoque--;
+carrinho[p.nome]
+? carrinho[p.nome].qtd++
+: carrinho[p.nome]={...p,qtd:1};
+salvar();atualizarQtd();render();
+}
+
+function render(){
+let lista=document.getElementById("lista");
+lista.innerHTML="";
+produtos.forEach(p=>{
+if(!p.genero.includes(genero) || p.categoria!==categoria)return;
+
+let estoqueTxt=p.estoque>0
+? `<div style="position:absolute;right:10px;bottom:10px;font-size:12px">Estoque: ${p.estoque}</div>`
+: `<div style="position:absolute;right:10px;bottom:10px;font-size:12px;color:red">Sem estoque</div>`;
+
+lista.innerHTML+=`
+<div class="card ${p.genero} ${p.categoria}" style="position:relative">
+<img src="${p.img}">
+<h3>${p.nome}</h3>
+<p>R$ ${p.preco.toFixed(2)}</p>
+<button ${p.estoque<=0?"disabled style='background:#999'":""}
+onclick='addCarrinho(produtos[${produtos.indexOf(p)}])'>
+Adicionar
+</button>
+${estoqueTxt}
+</div>`;
+});
 }
 
 function verCarrinho(){
 let h="",t=0;
 Object.values(carrinho).forEach(p=>{
 t+=p.preco*p.qtd;
-h+=`<div class="itemCarrinho"><img src="${p.img}"><div><div>${p.nome}</div><div>R$ ${p.preco.toFixed(2)}</div><div class="qtd"><button onclick="alterar('${p.nome}',-1)">-</button>${p.qtd}<button onclick="alterar('${p.nome}',1)">+</button></div></div></div>`;
+h+=`<div class="itemCarrinho">
+<img src="${p.img}">
+<div>
+<div>${p.nome}</div>
+<div>R$ ${p.preco.toFixed(2)}</div>
+<div class="qtd">
+<button onclick="alterar('${p.nome}',-1)">-</button>
+${p.qtd}
+<button onclick="alterar('${p.nome}',1)">+</button>
+</div>
+</div></div>`;
 });
 document.getElementById("itensCarrinho").innerHTML=h||"Carrinho vazio";
 document.getElementById("total").innerText="Total: R$ "+t.toFixed(2);
@@ -138,13 +147,38 @@ if(carrinho[n].qtd<=0)delete carrinho[n];
 salvar();atualizarQtd();verCarrinho();
 }
 
-function fecharCarrinho(e){if(e.target.id==="modalCarrinho")e.target.style.display="none";}
-function pagar(){alert("Pagamento simulado");carrinho={};salvar();atualizarQtd();document.getElementById("modalCarrinho").style.display="none";}
+function fecharCarrinho(e){
+if(e.target.id==="modalCarrinho")e.target.style.display="none";
+}
+
+function pagar(){
+alert("Pagamento simulado");
+carrinho={};salvar();atualizarQtd();
+document.getElementById("modalCarrinho").style.display="none";
+}
+
+/* CARREGA CSV */
+fetch("produtos.csv")
+.then(r=>r.text())
+.then(t=>{
+let linhas=t.trim().split("\n").slice(1);
+linhas.forEach(l=>{
+let [nome,preco,img,genero,categoria,estoque]=l.split(",");
+produtos.push({
+nome,
+preco:parseFloat(preco),
+img,
+genero,
+categoria,
+estoque:parseInt(estoque)
+});
+});
+render();atualizarQtd();
+});
 
 window.onload=()=>{
 document.querySelector("#abasGenero button").classList.add("ativo");
 document.querySelector("#abasCategoria button").classList.add("ativo");
-atualizar();atualizarQtd();
 };
 </script>
 

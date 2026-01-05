@@ -163,8 +163,7 @@ fetch("produtos.csv")
 .then(t=>{
 let linhas=t.trim().split("\n").slice(1);
 linhas.forEach(l=>{
-let [nome,preco,img,genero,categoria,estoque]=l.split(";")
-                                                        
+let [nome,preco,img,genero,categoria,estoque]=l.split(";");
 produtos.push({
 nome,
 preco:parseFloat(preco),
@@ -185,4 +184,3 @@ document.querySelector("#abasCategoria button").classList.add("ativo");
 
 </body>
 </html>
-

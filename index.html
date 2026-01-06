@@ -190,9 +190,19 @@ window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`,"_blank");
 }
 
 function alterar(n,v){
-carrinho[n].qtd+=v;
-if(carrinho[n].qtd<=0) delete carrinho[n];
-salvar();atualizarQtd();render();verCarrinho();
+let produto = produtos.find(p => p.nome === n);
+if(!produto) return;
+
+if(v > 0 && estoqueDisponivel(produto) <= 0) return;
+
+carrinho[n].qtd += v;
+
+if(carrinho[n].qtd <= 0) delete carrinho[n];
+
+salvar();
+atualizarQtd();
+render();
+verCarrinho();
 }
 
 function fecharCarrinho(e){

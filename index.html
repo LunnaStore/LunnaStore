@@ -75,6 +75,7 @@ footer{background:#111;color:#fff;text-align:center;padding:10px}
 let genero="feminino",categoria="brincos";
 let carrinho=JSON.parse(localStorage.getItem("carrinho"))||{};
 let produtos=[];
+const WHATSAPP_NUMERO = "5518996212345";
 
 function salvar(){localStorage.setItem("carrinho",JSON.stringify(carrinho));}
 function atualizarQtd(){
@@ -97,6 +98,11 @@ carrinho[p.nome]
 ? carrinho[p.nome].qtd++
 : carrinho[p.nome]={...p,qtd:1};
 salvar();atualizarQtd();render();
+}
+
+function calcularFrete(subtotal){
+if(subtotal>=299.99) return 0;
+return 20;
 }
 
 function render(){
@@ -124,9 +130,9 @@ ${estoqueTxt}
 }
 
 function verCarrinho(){
-let h="",t=0;
+let h="",subtotal=0;
 Object.values(carrinho).forEach(p=>{
-t+=p.preco*p.qtd;
+subtotal+=p.preco*p.qtd;
 h+=`<div class="itemCarrinho">
 <img src="${p.img}">
 <div>
@@ -139,9 +145,38 @@ ${p.qtd}
 </div>
 </div></div>`;
 });
+
+let frete=calcularFrete(subtotal);
+let total=subtotal+frete;
+
 document.getElementById("itensCarrinho").innerHTML=h||"Carrinho vazio";
-document.getElementById("total").innerText="Total: R$ "+t.toFixed(2);
+document.getElementById("total").innerHTML=
+`Subtotal: R$ ${subtotal.toFixed(2)}<br>
+Frete: ${frete===0?"Grátis":"R$ "+frete.toFixed(2)}<br>
+<b>Total: R$ ${total.toFixed(2)}</b>
+<br><br>
+<button class="pagar" onclick="finalizarWhats()">Finalizar no WhatsApp</button>`;
+
 document.getElementById("modalCarrinho").style.display="block";
+}
+
+function finalizarWhats(){
+let msg="🛍️ *Pedido - Lunna Store*%0A%0A";
+let subtotal=0;
+
+Object.values(carrinho).forEach(p=>{
+subtotal+=p.preco*p.qtd;
+msg+=`• ${p.nome} (${p.qtd}x) - R$ ${(p.preco*p.qtd).toFixed(2)}%0A`;
+});
+
+let frete=calcularFrete(subtotal);
+let total=subtotal+frete;
+
+msg+=`%0ASubtotal: R$ ${subtotal.toFixed(2)}`;
+msg+=`%0AFrete: ${frete===0?"Grátis":"R$ "+frete.toFixed(2)}`;
+msg+=`%0A*Total: R$ ${total.toFixed(2)}*`;
+
+window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`,"_blank");
 }
 
 function alterar(n,v){
@@ -154,13 +189,8 @@ function fecharCarrinho(e){
 if(e.target.id==="modalCarrinho")e.target.style.display="none";
 }
 
-function pagar(){
-alert("Pagamento simulado");
-carrinho={};salvar();atualizarQtd();
-document.getElementById("modalCarrinho").style.display="none";
-}
+function pagar(){}
 
-/* CARREGA CSV */
 fetch("produtos.csv")
 .then(r=>r.text())
 .then(t=>{

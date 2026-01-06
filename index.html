@@ -67,7 +67,6 @@ footer{background:#111;color:#fff;text-align:center;padding:10px}
 <h2>Carrinho</h2>
 <div id="itensCarrinho"></div>
 <div class="total" id="total"></div>
-<button class="pagar" onclick="pagar()">Pagar (simulado)</button>
 </div>
 </div>
 
@@ -143,6 +142,9 @@ let h="",subtotal=0;
 
 Object.values(carrinho).forEach(p=>{
 subtotal+=p.preco*p.qtd;
+let prod = produtos.find(pr=>pr.nome===p.nome);
+let semEstoque = estoqueDisponivel(prod)<=0;
+
 h+=`<div class="itemCarrinho">
 <img src="${p.img}">
 <div>
@@ -151,7 +153,7 @@ h+=`<div class="itemCarrinho">
 <div class="qtd">
 <button onclick="alterar('${p.nome}',-1)">-</button>
 ${p.qtd}
-<button onclick="alterar('${p.nome}',1)">+</button>
+<button onclick="alterar('${p.nome}',1)" ${semEstoque?"disabled style='background:#999'":""}>+</button>
 </div>
 </div></div>`;
 });
@@ -187,6 +189,11 @@ msg+=`%0AFrete: ${frete===0?"Grátis":"R$ "+frete.toFixed(2)}`;
 msg+=`%0A*Total: R$ ${total.toFixed(2)}*`;
 
 window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`,"_blank");
+
+carrinho = {};
+salvar();
+atualizarQtd();
+render();
 }
 
 function alterar(n,v){
@@ -196,7 +203,6 @@ if(!produto) return;
 if(v > 0 && estoqueDisponivel(produto) <= 0) return;
 
 carrinho[n].qtd += v;
-
 if(carrinho[n].qtd <= 0) delete carrinho[n];
 
 salvar();
@@ -227,7 +233,6 @@ estoque:parseInt(estoque)
 render();atualizarQtd();
 });
 </script>
-
 
 </body>
 </html>

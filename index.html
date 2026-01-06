@@ -83,6 +83,11 @@ document.getElementById("qtd").innerText=
 Object.values(carrinho).reduce((s,p)=>s+p.qtd,0);
 }
 
+function estoqueDisponivel(p){
+let noCarrinho = carrinho[p.nome]?.qtd || 0;
+return p.estoque - noCarrinho;
+}
+
 function ativar(btn,g){
 document.querySelectorAll(g+" button").forEach(b=>b.classList.remove("ativo"));
 btn.classList.add("ativo");
@@ -92,11 +97,12 @@ function setGenero(g,b){genero=g;ativar(b,"#abasGenero");render();}
 function setCategoria(c,b){categoria=c;ativar(b,"#abasCategoria");render();}
 
 function addCarrinho(p){
-if(p.estoque<=0)return;
-p.estoque--;
+if(estoqueDisponivel(p)<=0) return;
+
 carrinho[p.nome]
 ? carrinho[p.nome].qtd++
 : carrinho[p.nome]={...p,qtd:1};
+
 salvar();atualizarQtd();render();
 }
 
@@ -108,11 +114,14 @@ return 20;
 function render(){
 let lista=document.getElementById("lista");
 lista.innerHTML="";
+
 produtos.forEach(p=>{
 if(!p.genero.includes(genero) || p.categoria!==categoria)return;
 
-let estoqueTxt=p.estoque>0
-? `<div style="position:absolute;right:10px;bottom:10px;font-size:12px">Estoque: ${p.estoque}</div>`
+let estoque = estoqueDisponivel(p);
+
+let estoqueTxt = estoque>0
+? `<div style="position:absolute;right:10px;bottom:10px;font-size:12px">Estoque: ${estoque}</div>`
 : `<div style="position:absolute;right:10px;bottom:10px;font-size:12px;color:red">Sem estoque</div>`;
 
 lista.innerHTML+=`
@@ -120,7 +129,7 @@ lista.innerHTML+=`
 <img src="${p.img}">
 <h3>${p.nome}</h3>
 <p>R$ ${p.preco.toFixed(2)}</p>
-<button ${p.estoque<=0?"disabled style='background:#999'":""}
+<button ${estoque<=0?"disabled style='background:#999'":""}
 onclick='addCarrinho(produtos[${produtos.indexOf(p)}])'>
 Adicionar
 </button>
@@ -131,6 +140,7 @@ ${estoqueTxt}
 
 function verCarrinho(){
 let h="",subtotal=0;
+
 Object.values(carrinho).forEach(p=>{
 subtotal+=p.preco*p.qtd;
 h+=`<div class="itemCarrinho">
@@ -181,15 +191,13 @@ window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`,"_blank");
 
 function alterar(n,v){
 carrinho[n].qtd+=v;
-if(carrinho[n].qtd<=0)delete carrinho[n];
-salvar();atualizarQtd();verCarrinho();
+if(carrinho[n].qtd<=0) delete carrinho[n];
+salvar();atualizarQtd();render();verCarrinho();
 }
 
 function fecharCarrinho(e){
 if(e.target.id==="modalCarrinho")e.target.style.display="none";
 }
-
-function pagar(){}
 
 fetch("produtos.csv")
 .then(r=>r.text())
@@ -208,12 +216,8 @@ estoque:parseInt(estoque)
 });
 render();atualizarQtd();
 });
-
-window.onload=()=>{
-document.querySelector("#abasGenero button").classList.add("ativo");
-document.querySelector("#abasCategoria button").classList.add("ativo");
-};
 </script>
+
 
 </body>
 </html>
